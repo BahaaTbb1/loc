@@ -1,0 +1,140 @@
+stages:
+  - build
+  - deploy
+
+#### VARIABLES
+
+variables:
+  COMPOSE_FILE: docker-compose.server.yml
+  DOCKER_GROUP: loc
+  DOCKER_PROJECT: $CI_PROJECT_NAME
+  DOCKER_IMAGE_NODEJS: 'harbourspace/$DOCKER_GROUP-$DOCKER_PROJECT-nodejs'
+  DOCKER_PUB_IP: '0.0.0.0'
+
+
+#### BUILD
+
+.build_images:
+  stage: build
+  image: docker:20.10.17-alpine3.16
+  services:
+    - name: docker:20.10.17-dind-alpine3.16
+  variables:
+    DOCKER_DRIVER: overlay2
+    DOCKER_TLS_CERTDIR: "/certs"
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_PATH
+    GIT_STRATEGY: clone
+    GIT_DEPTH: 1
+    BUILD_CACHE: $DOCKER_IMAGE_NODEJS:buildcache
+    BUILD_TAG: $DOCKER_IMAGE_NODEJS:$DOCKER_TAG
+    BUILD_DOCKERFILE: docker/Dockerfile-nodejs
+  before_script:
+    - 'echo "DOCKER_TAG=$DOCKER_TAG" > docker_tag'
+    - 'echo $DOCKER_TAG'
+  script:
+    - 'mkdir ~/.docker && echo "$CUSTOM_DOCKER_AUTH_CONFIG" > ~/.docker/config.json'
+    - 'docker context create tls-environment'
+    - 'docker buildx create --name builder --use --bootstrap tls-environment'
+    - 'docker buildx build 
+         --cache-from $BUILD_CACHE
+         --cache-to type=registry,mode=max,compression=zstd,compression-level=12,ref=$BUILD_CACHE
+         --no-cache-filter build
+         --tag $BUILD_TAG --pull --push --progress plain --file $BUILD_DOCKERFILE .'
+  artifacts:
+    expire_in: '1 yr'
+    paths:
+      - $COMPOSE_FILE
+      - .env.*
+    reports:
+      dotenv: docker_tag
+  tags:
+    - build-dind
+
+Build:
+  extends: .build_images
+  variables:
+    DOCKER_TAG: $CI_JOB_ID
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME'
+      when: on_success
+    - if: '$CI_COMMIT_BRANCH'
+      when: on_success
+
+Build for tags:
+  extends: .build_images
+  variables:
+    DOCKER_TAG: $CI_COMMIT_TAG
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: on_success
+
+#### DEPLOY
+
+.deploy:
+  stage: deploy
+  resource_group: $ENV
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_PATH
+    GIT_STRATEGY: none
+  script:
+    - 'docker-compose down -v'
+    - 'docker-compose up -d --force-recreate'
+  after_script:
+    - 'docker image prune -af | grep --color=never "Total" || true'
+
+.deploy_for_untagged:
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME'
+      when: never
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - if: '$CI_COMMIT_BRANCH'
+      when: manual
+
+.deploy_for_tagged:
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: manual
+
+#### DEV
+
+Deploy to dev:
+  extends: 
+    - .deploy_for_untagged
+    - .deploy
+  variables:
+    ENV: dev
+    COMPOSE_PROFILES: server
+  needs:
+    - Build
+  tags:
+    - loc-dev
+
+#### STAGE
+
+Deploy to stage:
+  extends: 
+    - .deploy_for_tagged
+    - .deploy
+  variables:
+    ENV: stage
+    COMPOSE_PROFILES: server
+  needs:
+    - Build for tags
+  tags:
+    - loc-stage
+
+#### PROD
+
+Deploy to prod:
+  extends: 
+    - .deploy_for_tagged
+    - .deploy
+  variables:
+    ENV: prod
+    COMPOSE_PROFILES: server
+    DOCKER_PUB_IP: '127.0.0.1'
+  needs:
+    - Build for tags
+  tags:
+    - loc-prod

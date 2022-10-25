@@ -1,0 +1,50 @@
+{
+  "plugins": ["@typescript-eslint"],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
+
+  "parser": "@typescript-eslint/parser",
+  "ignorePatterns": [
+    "*.html",
+    "*.css",
+    "*.png",
+    "*.svg",
+    "*.ico",
+    "*.ttf",
+    "*.woff",
+    "*.woff2",
+    "*.txt",
+    "*.json",
+    "*webpack/**/*",
+    ".generate_component/index.js",
+    ".generate_component/component_templates.js"
+  ],
+  "env": {
+    "jest": true,
+    "browser": true,
+    "es6": true,
+    "es2017": true,
+    "es2020": true,
+    "es2021": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": ["./tsconfig.json"]
+  },
+  "rules": {
+    // @eslint specific
+    "no-shadow": "off", // corresponding rule in @typescript-eslint is required
+    "no-console": "error",
+    "arrow-parens": ["error", "always"],
+    "no-unused-vars": "off", // corresponding rule in @typescript-eslint is required
+
+    // @typescript-eslint specific
+    "@typescript-eslint/no-unsafe-argument": 0,
+    "@typescript-eslint/no-shadow": ["error"], // corresponding rule in eslint is required
+    "@typescript-eslint/no-duplicate-imports": "error",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }] // corresponding rule in eslint is required
+  }
+}

@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+
+  server-nodejs:
+    profiles:
+      - server
+    container_name: $DOCKER_PROJECT-nodejs
+    image: $DOCKER_IMAGE_NODEJS:$DOCKER_TAG
+    restart: always
+    ports:
+      - "${DOCKER_PUB_IP}:8004:3000"
+    command: yarn start

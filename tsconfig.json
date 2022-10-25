@@ -1,0 +1,91 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "jsx": "preserve",
+    "strict": true,
+    "forceConsistentCasingInFileNames": false,
+    "isolatedModules": true,
+    "noEmit": true,
+    "paths": {
+      "modules/*": [
+        "modules/*"
+      ],
+      "globalstyles/*": [
+        "globalstyles/*"
+      ],
+      "globalUi/*": [
+        "globalUi/*"
+      ],
+      "assets/*": [
+        "assets/*"
+      ],
+      "misc/*": [
+        "misc/*"
+      ],
+      "services/*": [
+        "services/*"
+      ],
+      "env/*": [
+        "env/*"
+      ],
+      "routing/*": [
+        "routing/*"
+      ],
+      "hooks/*": [
+        "hooks/*"
+      ],
+      "components/*": [
+        "components/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./",
+    "rootDirs": [
+      "."
+    ],
+    "typeRoots": [
+      "types/react-app-env.d",
+      "types/fonts.d.ts",
+      "node_modules/@types",
+      "types/theme.d",
+      "types/environment.d"
+    ],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "incremental": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "types/react-app-env.d",
+    "types/fonts.d.ts",
+    "node_modules/@types",
+    "types/theme.d",
+    "types/environment.d"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

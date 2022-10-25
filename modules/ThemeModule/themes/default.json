@@ -1,0 +1,68 @@
+{
+  "color": {
+    "status": {
+      "gText": "#096328",
+      "gBg": " #D9FADA",
+      "g2Bg": "#BCF9BF",
+      "yText": "#9C473A",
+      "yBg": " #FFF4D2",
+      "rText": "#EB4869",
+      "rBg": " #FFC4D0",
+      "greyBg": "#EDF1F4"
+    },
+    "neutrals": {
+      "white": "#FFFFFF",
+      "black": "#232339",
+      "n1": "#F7F9FE",
+      "n2": "#F1F5FF",
+      "n3": "#E1E7F7",
+      "n4": "#ACB6D0",
+      "n5": "#636770",
+      "n6": "#5D5E7A",
+      "n7": "#E9EEFC",
+      "n8": "#A50223",
+      "n9": "#FFF0F4",
+      "n10": "#40425b",
+      "n11": "#EEFFEF",
+      "n12": "#ED8915",
+      "n13": "#FFF6DE",
+      "n14": "#EEF3FF",
+      "modalBack": "#40425b7a",
+      "tempN1": "#F2F7FC",
+      "tempN2": "#DEE7EE",
+      "tempN3": "#ADB3CF",
+      "tempN4": "#595A6C",
+      "grayDark": "#636470",
+      "grayBright": "#E6E6E6",
+      "grayBrighter": "#C8D1E6",
+      "shadow1": "0px 0px 8px rgba(35, 35, 57, 0.06)"
+    },
+    "main": {
+      "mainBlue": "#3959FF",
+      "gradient": "linear-gradient(90deg, #3870FF 0%, #3844FF 100%)",
+      "gradient2": "linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%)",
+      "second": "#628AF0",
+      "shadowColor": "rgba(35, 35, 57, 0.06)"
+    },
+    "league": {
+      "v": "#5CC88D",
+      "vLight": "#C9EACA",
+      "iv": "#F8CD46",
+      "ivLight": "#FFEEB8",
+      "iii": "#EB4869",
+      "iiiLight": "#FFC4D0",
+      "ii": "#CF75FF",
+      "iiLight": "#F3DCFF",
+      "i": "#38C9FF",
+      "iLight": "#BBECFF",
+      "avatarBg": "#BBEBFC"
+    }
+  },
+  "fonts": {
+    "font": "Inter",
+    "fontExtraBold": "InterExtraBold",
+    "fontBold": "InterBold",
+    "fontSemiBold": "InterSemiBold",
+    "fontRegular": "InterRegular"
+  }
+}

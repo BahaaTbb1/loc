@@ -1,0 +1,12 @@
+FROM harbourspace/node:16.16.0-alpine3.16-1.0 AS pm
+
+COPY package.json /code/package.json
+COPY yarn.lock /code/yarn.lock
+RUN yarn install
+
+
+FROM harbourspace/node:16.16.0-alpine3.16-1.0 AS build
+
+COPY . /code
+COPY --from=pm /code/node_modules /code/node_modules
+RUN yarn next telemetry disable && yarn build

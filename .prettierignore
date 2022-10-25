@@ -1,0 +1,6 @@
+build
+coverage
+bundle_analyzer
+node_modules
+src/resources
+.next

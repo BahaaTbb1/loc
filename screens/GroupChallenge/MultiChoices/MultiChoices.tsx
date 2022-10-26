@@ -3,7 +3,8 @@ import Button from 'components/Button';
 import { S } from 'globalstyles/index';
 import { useToast } from 'hooks/useToast';
 import { useSession } from 'next-auth/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { IMCContent } from '../ProblemDetails/Submissions/Contstants';
 import Choice from './Choice';
 import { SUBMIT_MULTI_CHOICE_PROBLEM } from './Contstants';
 import {
@@ -24,13 +25,13 @@ const MultiChoices = ({
   refetch
 }: {
   refetch: any;
-  content: { question: string; answers: string[]; correct_answer: boolean[] };
+  content: IMCContent;
   activityId: number;
   problemId: number;
 }) => {
   const { data: session } = useSession();
   const toast = useToast();
-
+  const [choicesRes, setChoicesRes] = useState(content.answers.map((t) => ({ selected: false, title: t })));
   const [submitMutate] = useMutation(SUBMIT_MULTI_CHOICE_PROBLEM, {
     context: {
       headers: {
@@ -46,7 +47,7 @@ const MultiChoices = ({
         variables: {
           activityId: activityId,
           problemId: problemId,
-          answer: [true, false, false]
+          answer: choicesRes.map((t) => t.selected)
         }
       });
       refetch();
@@ -73,6 +74,22 @@ const MultiChoices = ({
       );
     }
   };
+  const onClick = async (
+    id: number,
+    t: {
+      selected: boolean;
+      title: string;
+    }
+  ) => {
+    const temp = choicesRes;
+    await setChoicesRes([]);
+    temp[id] = { selected: !t.selected, title: t.title };
+    await setChoicesRes(temp);
+  };
+  useEffect(() => {
+    setChoicesRes(content.answers.map((t) => ({ selected: false, title: t })));
+  }, [problemId]);
+
   return (
     <>
       <Wrapper>
@@ -83,8 +100,8 @@ const MultiChoices = ({
               <ProblemSubTitle>Select multiple options from the list.</ProblemSubTitle>
             </ProblemText>
             <ChoicesContainer>
-              {content.answers.map((t, id) => (
-                <Choice text={t} key={id} />
+              {choicesRes.map((t, id) => (
+                <Choice text={t.title} key={id} isSelected={t.selected} onClick={() => onClick(id, t)} />
               ))}
             </ChoicesContainer>
           </ProblemContainer>

@@ -21,8 +21,14 @@ export const GIT_PROBLEMS_SUBMISSIONS = gql`
     getSubmissionsFromProblemForCurrentStudent(problemId: $problemId, activityId: $activityId) {
       id
       content
-      verdict
-      status
+      verdict {
+        id
+        name
+      }
+      status {
+        id
+        name
+      }
       created_at
     }
   }
@@ -40,13 +46,30 @@ export interface IProblem {
   id: number;
   title: string;
   description: string;
-  content: {
-    question: string;
-    answers: string[];
-    correct_answer: boolean[];
-  };
+  content: ICQContent | IMCContent | IFRContent;
 }
 
+export interface IFRContent {
+  question: string;
+}
+export interface ICQContent {
+  coding_judge_id: number;
+  time_limit: number;
+  memory_limit: number;
+  sample_tests: {
+    input: string;
+    output: string;
+  }[];
+  test_cases: {
+    input: string;
+    output: string;
+  }[];
+}
+export interface IMCContent {
+  question: string;
+  answers: string[];
+  correct_answer: boolean[];
+}
 export interface IFRProblemSubmissions {
   getSubmissionsFromProblemForCurrentStudent: {
     id: string;
@@ -66,8 +89,8 @@ export interface IMCProblemSubmissions {
       submitted_answer: boolean[];
       language: null;
     };
-    verdict: string;
-    status: string;
+    verdict: { id: string; name: string };
+    status: { id: string; name: string };
     created_at: string;
   }[];
 }

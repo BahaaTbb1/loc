@@ -43,9 +43,9 @@ const ClassDetails = () => {
       </ProgramContainer>
       <S.Flex direction="column" gap="32">
         <TeacherProfile
-          name={`${data?.getCurrentModuleForCurrentStudent.teacher.user.firstname} ${data?.getCurrentModuleForCurrentStudent.teacher.user.lastname}`}
-          profession={data?.getCurrentModuleForCurrentStudent.teacher.title}
-          mail={data?.getCurrentModuleForCurrentStudent.teacher.user.email}
+          name={`${data?.getCurrentModuleForCurrentStudent.teacher?.user?.firstname} ${data?.getCurrentModuleForCurrentStudent.teacher?.user?.lastname}`}
+          profession={data?.getCurrentModuleForCurrentStudent.teacher?.title}
+          mail={data?.getCurrentModuleForCurrentStudent.teacher?.user?.email}
         />
         <ParticipantsC participants={data?.getCurrentModuleForCurrentStudent.students} />
       </S.Flex>

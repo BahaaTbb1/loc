@@ -13,6 +13,7 @@ import {
 } from './ProblemDetails/Submissions/Contstants';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { string } from 'yup';
 
 const GroupChallenge = () => {
   const router = useRouter();
@@ -24,8 +25,8 @@ const GroupChallenge = () => {
       id: Number(queryId)
     }
   });
-  const [problemId, setProblemId] = useState(data?.getActivityForCurrentStudent.problems[0].id);
-
+  const [problemId, setProblemId] = useState(data?.getActivityForCurrentStudent.problems[0]?.id);
+  // console.log(session?.user.access_token);
   const [problemData, setProblemData] = useState<IProblem | undefined>(data?.getActivityForCurrentStudent?.problems[0]);
   const { data: submissionData, refetch } = useQuery<IMCProblemSubmissions>(GIT_PROBLEMS_SUBMISSIONS, {
     context: {
@@ -53,11 +54,27 @@ const GroupChallenge = () => {
         setProblemId={setProblemId}
       />
       <GroupChallengeContainer>
-        <ProblemDetails submissionData={submissionData} />
-        {problemData?.type_id == 0 && <CodeEditor />}
+        <ProblemDetails
+          submissionData={submissionData}
+          content={problemData?.content}
+          description={String(problemData?.description)}
+          problemType={Number(problemData?.type_id)}
+        />
+        {problemData?.type_id == 5 && (
+          <CodeEditor
+            refetch={refetch}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            content={problemData.content}
+            activityId={Number(data?.getActivityForCurrentStudent.id)}
+            problemId={Number(problemData?.id)}
+          />
+        )}
         {problemData?.type_id == 1 && (
           <MultiChoices
             refetch={refetch}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             content={problemData.content}
             activityId={Number(data?.getActivityForCurrentStudent.id)}
             problemId={Number(problemData?.id)}

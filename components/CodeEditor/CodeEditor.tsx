@@ -22,6 +22,7 @@ import HashLoader from 'react-spinners/HashLoader';
 // utilites
 import { generateUEID } from 'utils/common';
 import EditorSubmissionBar from './PracticeMode/SubmissionBar/EditorSubmissionBar';
+import { ICQContent } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 
 const EditorOptions = {
   selectOnLineNumbers: true,
@@ -35,27 +36,18 @@ const EditorOptions = {
   renderWhitespace: 'none'
 };
 
-const CodeEditor = () => {
-  const [data, setData] = useState(`// Imports
-  import mongoose, { Schema } from 'mongoose'
-  
-  // Collection name
-  export const collection = 'Product'
-  
-  // Schema
-  const schema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
-    
-    description: {
-      type: String
-    }
-  }, {timestamps: true})
-  
-  // Model
-  export default mongoose.model(collection, schema, collection)`);
+const CodeEditor = ({
+  content,
+  activityId,
+  problemId,
+  refetch
+}: {
+  refetch: any;
+  content: ICQContent;
+  activityId: number;
+  problemId: number;
+}) => {
+  const [data, setData] = useState(`print('hello world')`);
   const [language, setLanguage] = useState('javascript');
 
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -141,7 +133,14 @@ const CodeEditor = () => {
             language={language}
           />
 
-          <EditorSubmissionBar setLanguage={setLanguage} setData={setData} />
+          <EditorSubmissionBar
+            setLanguage={setLanguage}
+            setData={setData}
+            activityId={activityId}
+            problemId={problemId}
+            answer={data}
+            refetch={refetch}
+          />
         </CodeEditorWrapper>
       </S.Flex>
     </CodeEditorContainer>

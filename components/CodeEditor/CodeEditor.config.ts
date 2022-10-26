@@ -33,11 +33,10 @@ const extensions: Record<string, string> = {
 };
 
 const languages: Record<string, string> = {
-  typescript: 'ts',
-  javascript: 'js',
   cpp: 'cpp',
   c: 'c',
-  python: 'py'
+  python2: 'python2',
+  python3: 'python3'
 };
 
 export { ThemeOptions, extensions, languages };

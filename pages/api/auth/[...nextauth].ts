@@ -22,7 +22,7 @@ export default NextAuth({
           email: credentials?.username,
           password: credentials?.password
         };
-        const res = await fetch('https://dev-api.leaguesofcode.com/api/v1/std/login', {
+        const res = await fetch(process.env.LOGIN_URL, {
           method: 'POST',
           body: JSON.stringify(data),
           headers: { 'Content-Type': 'application/json' }

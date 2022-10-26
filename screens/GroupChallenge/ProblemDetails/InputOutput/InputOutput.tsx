@@ -9,7 +9,14 @@ import {
   // OutputDetails
 } from './InputOutput.styles';
 
-const InputOutput = () => {
+const InputOutput = ({
+  testCases
+}: {
+  testCases: {
+    input: string;
+    output: string;
+  }[];
+}) => {
   const [copyInput, setCopyInput] = useState('Copy');
   const [copyoOutput, setCopyOutput] = useState('Copy');
 
@@ -39,11 +46,12 @@ const InputOutput = () => {
           <small onClick={() => copy('inputDetails')}>{copyInput}</small>
         </InputTitle>
         <InputDetails id="inputDetails">
-          3<br />
-          3 2<br />
-          1 1<br />
-          1 2<br />
-          1 1 2<br />
+          {testCases.map((t) => (
+            <>
+              {t.input}
+              <br />
+            </>
+          ))}
         </InputDetails>
       </Input>
       <Input>
@@ -53,12 +61,12 @@ const InputOutput = () => {
         </InputTitle>
         <InputDetails id="outputDetails">
           <pre>
-            {`3
-3 2
-1 1
-1 1
-1 1 2
-          `}
+            {testCases?.map((t) => (
+              <>
+                {t.output}
+                <br />
+              </>
+            ))}
           </pre>
         </InputDetails>
       </Input>

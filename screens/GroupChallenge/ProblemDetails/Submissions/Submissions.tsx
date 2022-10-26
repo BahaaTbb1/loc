@@ -9,25 +9,26 @@ import {
   StatusRow,
   DateRow,
   IconRow
-} from './Submissions.styles';
-import { dummyData } from './Submissions.config';
-import { useQuery } from '@apollo/client';
-import { GIT_PROBLEMS_SUBMISSIONS, IMCProblemSubmissions } from './Contstants';
-import { useSession } from 'next-auth/react';
+} from './Submissions.styles'; 
+import {  IMCProblemSubmissions } from './Contstants'; 
 
-type RowInfo = {
-  id: string;
-  status: string;
-  testcase?: number;
-  date: string;
-  time: string;
-  icon: string;
-};
+// type RowInfo = {
+//   id: string;
+//   status: string;
+//   testcase?: number;
+//   date: string;
+//   time: string;
+//   icon: string;
+// };
 
-const formatStatus = (status: string, testcase: number | undefined) => {
+const formatStatus = (status: string, verdict: string, testcase?: number | undefined) => {
   if (status === 'pending') return <span>Pending</span>;
   if (status === 'passed') return <span>Passed all tests</span>;
-  return <span>Failed on test case #{testcase}</span>;
+  return (
+    <span>
+      {verdict} {testcase ? '#' && testcase : ''}
+    </span>
+  );
 };
 
 const formatDate = (date: string, time: string) => {
@@ -52,7 +53,9 @@ const Submissions = ({ submissionData }: { submissionData: IMCProblemSubmissions
       return (
         <React.Fragment key={t.id}>
           <IdRow>{t.id}</IdRow>
-          <StatusRow status={t.status}>{formatStatus(t.status, Number(t.id))}</StatusRow>
+          <StatusRow status={t.status?.name}>
+            {formatStatus(t.status?.name, t.verdict?.name, Number(t.status?.id))}
+          </StatusRow>
           <DateRow>{formatDate(t.created_at, '')}</DateRow>
           <IconRow>{formatIcon('View')}</IconRow>
         </React.Fragment>

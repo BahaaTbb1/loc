@@ -48,4 +48,3 @@ packages/react-devtools-timeline/dist
 .next
 # Sentry
 # .sentryclirc
-.env.*

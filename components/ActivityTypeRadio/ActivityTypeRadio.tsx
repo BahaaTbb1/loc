@@ -7,12 +7,14 @@ export interface IActivityTypeRadioProps {
   checked: boolean;
   title: string;
   type: number;
-  setCurrent: (_id: number, type: number) => void;
+  classId: number;
+
+  setCurrent: (_id: number, type: number, classId: number) => void;
 }
 
-const ActivityTypeRadio = ({ id, checked, title, setCurrent, type }: IActivityTypeRadioProps) => {
+const ActivityTypeRadio = ({ id, checked, title, setCurrent, type, classId }: IActivityTypeRadioProps) => {
   return (
-    <ActivityTypeRadioContainer onClick={() => setCurrent(id, type)} checked={checked}>
+    <ActivityTypeRadioContainer onClick={() => setCurrent(id, type, classId)} checked={checked}>
       {checked ? (
         <Image src="/assets/images/icons/common/filled-circle.svg" width={24} height={24} alt="checked" />
       ) : (

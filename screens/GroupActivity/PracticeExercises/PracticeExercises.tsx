@@ -26,8 +26,9 @@ const PracticeExercises = ({ Aid }: IPracticeExercisesProps) => {
   const router = useRouter();
 
   const Navigate = () => {
-    router.push(`/group-challenge/1`);
+    return Aid ? router.push(`/group-challenge/${Aid}`) : router.push(`/group-challenge/1`);
   };
+
   return (
     <>
       <Container>

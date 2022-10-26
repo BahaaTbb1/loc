@@ -5,7 +5,7 @@ import { Button, Switch } from 'components';
 // utilites
 import { getFileExtension } from 'utils/common';
 import { useToast } from 'hooks/useToast';
-import { extensions } from 'components/CodeEditor/CodeEditor.config';
+import { extensions, languages } from 'components/CodeEditor/CodeEditor.config';
 import { S } from 'globalstyles';
 import { Pipe, SubmissionBar, SubmissionContainer, ToastMessage } from './EditorSubmissionBar.styles';
 import { useSession } from 'next-auth/react';
@@ -15,21 +15,22 @@ import { SUBMIT_MULTI_CODDING_PROBLEM } from 'components/CodeEditor/Contstants';
 interface ISubmissionBar {
   setData: (_e: string) => void;
   setLanguage: (_e: string) => void;
+  activityId: number;
+  problemId: number;
+  refetch: any;
+  answer: string;
 }
 
-const EditorSubmissionBar = memo(({ setData, setLanguage }: ISubmissionBar) => {
+const EditorSubmissionBar = memo(({ setData, setLanguage, activityId, problemId, refetch, answer }: ISubmissionBar) => {
   const { data: session } = useSession();
-  const [submitMutate] = useMutation<{ submitAnswerToCQForCurrentStudent: { id: number } }>(
-    SUBMIT_MULTI_CODDING_PROBLEM,
-    {
-      context: {
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${session?.user.access_token}`
-        }
+  const [submitMutate] = useMutation(SUBMIT_MULTI_CODDING_PROBLEM, {
+    context: {
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Bearer ${session?.user.access_token}`
       }
     }
-  );
+  });
   const [value, setValue] = useState(false);
   const toast = useToast();
 
@@ -50,11 +51,12 @@ const EditorSubmissionBar = memo(({ setData, setLanguage }: ISubmissionBar) => {
   const handleUploadFile = useCallback(() => {
     hiddenFileInput.current?.click();
   }, [hiddenFileInput]);
-
+  const langs = ['c', 'cpp', 'python2', 'python3'];
   const showToast = async () => {
     await submitMutate({
-      variables: { activityId: 1, problemId: 1, answer: 'test', language: 'test' }
+      variables: { activityId: activityId, problemId: problemId, answer: answer, language: langs[3] }
     });
+    refetch();
     toast.open(
       <S.Flex justifyContent="space-between" alingItems="center" style={{ flex: '1', width: '300px' }}>
         <div>

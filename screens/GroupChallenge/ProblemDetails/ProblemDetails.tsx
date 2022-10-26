@@ -4,16 +4,24 @@ import Statement from './ProblemStatement';
 
 import { ProblemDetailsContainer } from './ProblemDetails.styles';
 import InputOutput from './InputOutput';
-import { IMCProblemSubmissions } from './Submissions/Contstants';
-
-const ProblemDetails = ({ submissionData }: { submissionData: IMCProblemSubmissions | undefined }) => {
+import { ICQContent, IFRContent, IMCContent, IMCProblemSubmissions } from './Submissions/Contstants';
+interface IProblemDeteails {
+  submissionData: IMCProblemSubmissions | undefined;
+  problemType: number;
+  content: ICQContent | IMCContent | IFRContent | undefined;
+  description: string;
+}
+const ProblemDetails = ({ submissionData, content, problemType, description }: IProblemDeteails) => {
   return (
     <ProblemDetailsContainer>
       <Submissions submissionData={submissionData} />
-      <Statement />
-      <Statement />
-      <Statement />
-      <InputOutput />
+      <Statement description={description} />
+
+      {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        problemType == 5 && <InputOutput testCases={content.test_cases} />
+      }
     </ProblemDetailsContainer>
   );
 };

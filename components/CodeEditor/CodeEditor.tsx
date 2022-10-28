@@ -130,6 +130,9 @@ const CodeEditor = ({
             }}
             theme="LOC"
             value={data}
+            onChange={(e, _) => {
+              setData(String(e));
+            }}
             language={language}
           />
 

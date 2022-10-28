@@ -7,11 +7,7 @@ import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { addApolloState, initializeApollo } from 'lib/apolloClient';
 import { HttpLink, useQuery } from '@apollo/client';
-import {
-  GET_STUDENT_ACTIVITY,
-  GIT_PROBLEMS_SUBMISSIONS,
-  IStudentActivity
-} from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
+import { GET_STUDENT_ACTIVITY } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 
 const GroupChallengePage: NextPageWithLayout = () => {
   return <GroupChallenge />;
@@ -23,7 +19,6 @@ GroupChallengePage.getLayout = function getLayout(page: ReactElement) {
       <Head>
         <title>Leagues of Code</title>
       </Head>
-      <GroupChallengeBar />
       <>{page}</>
     </>
   );
@@ -53,7 +48,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } catch (error: any) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false
       }
     };

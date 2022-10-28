@@ -19,7 +19,7 @@ GroupChallengePage.getLayout = function getLayout(page: ReactElement) {
       <Head>
         <title>Leagues of Code</title>
       </Head>
-      <GroupChallengeBar />
+      <GroupChallengeBar  />
       <>{page}</>
     </>
   );
@@ -49,7 +49,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } catch (error: any) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false
       }
     };

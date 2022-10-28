@@ -5,13 +5,20 @@ export const GET_STUDENT_ACTIVITY = gql`
     getActivityForCurrentStudent(id: $id) {
       id
       title
+      description
+      speaker
+      start_datetime
+      problems_amount
       problems {
-        type_id
         id
         title
-        __typename
         description
+        type_id
         content
+      }
+      resources {
+        id
+        name
       }
     }
   }
@@ -37,7 +44,12 @@ export interface IStudentActivity {
   getActivityForCurrentStudent: {
     id: string;
     title: string;
+    start_datetime: string;
+    description: string;
+    speaker: string;
+    problems_amount: number;
     problems: [IProblem];
+    resources: [{ id: number; name: string; link: string }];
   };
 }
 export interface IProblem {

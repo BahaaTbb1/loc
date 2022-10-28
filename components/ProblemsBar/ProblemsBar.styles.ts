@@ -17,9 +17,9 @@ export const SideNav = styled.div`
   margin-left: 24px;
 `;
 
-export const Status = styled.div<{ isActive: boolean }>`
+export const Status = styled.div<{ isActive: number }>`
   padding: 11px;
-  background-color: ${(props) => (props.isActive ? '#23C175' : '#C1C8DE')};
+  background-color: ${(props) => (props.isActive == 1 ? '#23C175' : props.isActive == 0 ? '#C1C8DE' : '#EB4869')};
   border-radius: 50%;
   display: flex;
   justify-content: center;

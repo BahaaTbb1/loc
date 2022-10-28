@@ -64,7 +64,7 @@ export const QuestionContainer = styled.div<{ type?: string }>`
     `}
 
   ${(props) =>
-    props?.type === 'correct' &&
+    props?.type === 'non' &&
     css`
       background: rgba(35, 193, 117, 0.08);
       border: 1px solid #23c175;

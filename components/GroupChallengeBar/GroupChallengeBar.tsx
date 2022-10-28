@@ -20,8 +20,13 @@ import { Modal } from 'components';
 import LeaderBoardTable from 'screens/GroupChallenge/LeaderBoard';
 import Link from 'utils/ActiveLink';
 import { useRouter } from 'next/router';
-
-const ProblemBar = () => {
+interface IProblemBar {
+  problem: { id?: number; title?: string } | undefined;
+  nextProblem: () => void;
+  prevProblem: () => void;
+  problemColor: number;
+}
+const ProblemBar = ({ problem, nextProblem, prevProblem, problemColor }: IProblemBar) => {
   const { isShown, toggle } = useModal();
   const router = useRouter();
   return (
@@ -37,14 +42,21 @@ const ProblemBar = () => {
               <Module>Module 2 / Week 3</Module>
             </Activity>
           </S.Flex>
-          <QuestionContainer type="wrong">
-            <Icon>
-              <img src="/assets/images/icons/common/arrow-left.svg" loading="lazy" />
-            </Icon>
-            <Question>1. Numbers and strings are different</Question>
-            <Icon>
-              <img src="/assets/images/icons/common/arrow-right.svg" loading="lazy" />
-            </Icon>
+          <QuestionContainer type={problemColor == 1 ? 'non' : problemColor == 2 ? 'wrong' : ''}>
+            <div onClick={prevProblem}>
+              <Icon>
+                <img src="/assets/images/icons/common/arrow-left.svg" loading="lazy" />
+              </Icon>
+            </div>
+
+            <Question>
+              {problem?.id}. {problem?.title}
+            </Question>
+            <div onClick={nextProblem}>
+              <Icon>
+                <img src="/assets/images/icons/common/arrow-right.svg" loading="lazy" />
+              </Icon>
+            </div>
           </QuestionContainer>
           <S.Flex direction="row" justifyContent="space-between" alignItems="center" gap="16">
             <S.Flex direction="column" justifyContent="space-between" alignItems="center" gap="1">

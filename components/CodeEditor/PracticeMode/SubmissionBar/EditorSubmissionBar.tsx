@@ -54,7 +54,7 @@ const EditorSubmissionBar = memo(({ setData, setLanguage, activityId, problemId,
   const langs = ['c', 'cpp', 'python2', 'python3'];
   const showToast = async () => {
     await submitMutate({
-      variables: { activityId: activityId, problemId: problemId, answer: answer, language: langs[3] }
+      variables: { activityId: activityId, problemId: problemId, answer: answer, language: langs[1] }
     });
     refetch();
     toast.open(

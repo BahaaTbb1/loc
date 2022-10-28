@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
+import { IStudentActivity } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 import { config } from './config';
 import {
   ActivityId,
@@ -20,9 +21,10 @@ import {
 
 interface IPracticeExercisesProps {
   Aid?: number;
+  data: IStudentActivity | undefined;
 }
 
-const PracticeExercises = ({ Aid }: IPracticeExercisesProps) => {
+const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
   const router = useRouter();
 
   const Navigate = () => {
@@ -40,7 +42,7 @@ const PracticeExercises = ({ Aid }: IPracticeExercisesProps) => {
           <ActivityTableHeader>
             <HeaderDateContainer>
               <img width={20} height={20} src="/assets/images/icons/common/clook.svg" />
-              <HEaderDate>Sunday Sep 20 @ 10:00 CET</HEaderDate>
+              <HEaderDate>{data?.getActivityForCurrentStudent.start_datetime}</HEaderDate>
             </HeaderDateContainer>
             <HeaderContent>
               <HeaderTime>
@@ -54,13 +56,13 @@ const PracticeExercises = ({ Aid }: IPracticeExercisesProps) => {
             </HeaderContent>
           </ActivityTableHeader>
           <Activities>
-            {config.map(({ id, title }) => (
+            {data?.getActivityForCurrentStudent.problems.map(({ id, title }) => (
               <Activity key={id}>
                 <ActivityTitle>
                   <ActivityId>{id}. </ActivityId>
                   <span>{title}</span>
                 </ActivityTitle>
-                <span>0/3</span>
+                <span>0/{data?.getActivityForCurrentStudent.problems_amount}</span>
               </Activity>
             ))}
           </Activities>

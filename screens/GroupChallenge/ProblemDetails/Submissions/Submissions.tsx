@@ -8,9 +8,10 @@ import {
   IdRow,
   StatusRow,
   DateRow,
-  IconRow
-} from './Submissions.styles'; 
-import {  IMCProblemSubmissions } from './Contstants'; 
+  IconRow,
+  EmptySubmission
+} from './Submissions.styles';
+import { IMCProblemSubmissions } from './Contstants';
 
 // type RowInfo = {
 //   id: string;
@@ -26,7 +27,7 @@ const formatStatus = (status: string, verdict: string, testcase?: number | undef
   if (status === 'passed') return <span>Passed all tests</span>;
   return (
     <span>
-      {verdict} {testcase ? '#' && testcase : ''}
+      {verdict} {testcase ? '' /*&& testcase*/ : ''}
     </span>
   );
 };
@@ -53,7 +54,7 @@ const Submissions = ({ submissionData }: { submissionData: IMCProblemSubmissions
       return (
         <React.Fragment key={t.id}>
           <IdRow>{t.id}</IdRow>
-          <StatusRow status={t.status?.name}>
+          <StatusRow status={t.verdict?.name}>
             {formatStatus(t.status?.name, t.verdict?.name, Number(t.status?.id))}
           </StatusRow>
           <DateRow>{formatDate(t.created_at, '')}</DateRow>
@@ -66,9 +67,15 @@ const Submissions = ({ submissionData }: { submissionData: IMCProblemSubmissions
   return (
     <SubmissionContainer>
       <SubmissionTitle>Submissions</SubmissionTitle>
-      <SubmissionTable>
-        <Table rows={rows()} />
-      </SubmissionTable>
+      {rows() ? (
+        <SubmissionTable>
+          <Table rows={rows()} />
+        </SubmissionTable>
+      ) : (
+        <EmptySubmission>
+          <span>No submissions yet</span>
+        </EmptySubmission>
+      )}
     </SubmissionContainer>
   );
 };

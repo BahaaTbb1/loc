@@ -10,6 +10,7 @@ import { GET_CLASS_DETAILS } from 'screens/ClassDetails/Constants';
 
 import type { NextPageWithLayout } from '../_app';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ClassDetailsPage: NextPageWithLayout = (props) => {
   return <ClassDetails />;
 };
@@ -66,10 +67,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return addApolloState(apolloClient, {
       props: {}
     });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/',
         permanent: false
       }
     };

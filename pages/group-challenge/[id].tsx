@@ -19,7 +19,6 @@ GroupChallengePage.getLayout = function getLayout(page: ReactElement) {
       <Head>
         <title>Leagues of Code</title>
       </Head>
-      <GroupChallengeBar  />
       <>{page}</>
     </>
   );

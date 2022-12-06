@@ -62,7 +62,7 @@ const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
                   <ActivityId>{id}. </ActivityId>
                   <span>{title}</span>
                 </ActivityTitle>
-                <span>0/{data?.getActivityForCurrentStudent.problems_amount}</span>
+                <span>0/{data?.getActivityForCurrentStudent.problems_count}</span>
               </Activity>
             ))}
           </Activities>

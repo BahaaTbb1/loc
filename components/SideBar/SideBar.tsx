@@ -11,26 +11,31 @@ const Sidebar = () => {
     <Container>
       <img src="/logo.svg" width="42" height="29" loading="lazy" />
       <S.Flex direction="column" justifyContent="center" alignItems="center" gap="56">
-        <Page active={router.pathname === '/group-activity' || router.pathname === '/class-details'}>
-          <Link href="/group-activity">
-            <svg
-              style={{ position: 'relative', rotate: '-45deg' }}
-              width="42"
-              height="29"
-              viewBox="0 0 22 21"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M5 18.0028H17V8.15985L11 2.70585L5 8.15985V18.0028ZM18 20.0028H4C3.73478 20.0028 3.48043 19.8975 3.29289 19.71C3.10536 19.5224 3 19.2681 3 19.0028V10.0028H0L10.327 0.61485C10.5111 0.447327 10.7511 0.354492 11 0.354492C11.2489 0.354492 11.4889 0.447327 11.673 0.61485L22 10.0028H19V19.0028C19 19.2681 18.8946 19.5224 18.7071 19.71C18.5196 19.8975 18.2652 20.0028 18 20.0028ZM6.5 12.0028H8.5C8.5 12.6659 8.76339 13.3018 9.23223 13.7706C9.70107 14.2395 10.337 14.5028 11 14.5028C11.663 14.5028 12.2989 14.2395 12.7678 13.7706C13.2366 13.3018 13.5 12.6659 13.5 12.0028H15.5C15.5 13.1963 15.0259 14.3409 14.182 15.1848C13.3381 16.0287 12.1935 16.5028 11 16.5028C9.80653 16.5028 8.66193 16.0287 7.81802 15.1848C6.97411 14.3409 6.5 13.1963 6.5 12.0028V12.0028Z"
-                fill={
-                  router.pathname === '/group-activity' || router.pathname === '/class-details' ? 'white' : '#ADB3CF'
-                }
-              />
-            </svg>
-          </Link>
-        </Page>
-
+        {router.pathname != '/' && (
+          <Page
+            active={
+              router.pathname.split('/')[1] === 'group-activity' || router.pathname.split('/')[1] === 'class-details'
+            }
+          >
+            <Link href="/group-activity">
+              <svg
+                style={{ position: 'relative', rotate: '-45deg' }}
+                width="42"
+                height="29"
+                viewBox="0 0 22 21"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M5 18.0028H17V8.15985L11 2.70585L5 8.15985V18.0028ZM18 20.0028H4C3.73478 20.0028 3.48043 19.8975 3.29289 19.71C3.10536 19.5224 3 19.2681 3 19.0028V10.0028H0L10.327 0.61485C10.5111 0.447327 10.7511 0.354492 11 0.354492C11.2489 0.354492 11.4889 0.447327 11.673 0.61485L22 10.0028H19V19.0028C19 19.2681 18.8946 19.5224 18.7071 19.71C18.5196 19.8975 18.2652 20.0028 18 20.0028ZM6.5 12.0028H8.5C8.5 12.6659 8.76339 13.3018 9.23223 13.7706C9.70107 14.2395 10.337 14.5028 11 14.5028C11.663 14.5028 12.2989 14.2395 12.7678 13.7706C13.2366 13.3018 13.5 12.6659 13.5 12.0028H15.5C15.5 13.1963 15.0259 14.3409 14.182 15.1848C13.3381 16.0287 12.1935 16.5028 11 16.5028C9.80653 16.5028 8.66193 16.0287 7.81802 15.1848C6.97411 14.3409 6.5 13.1963 6.5 12.0028V12.0028Z"
+                  fill={
+                    router.pathname === '/group-activity' || router.pathname === '/class-details' ? 'white' : '#ADB3CF'
+                  }
+                />
+              </svg>
+            </Link>
+          </Page>
+        )}
         <Page active={router.pathname === '/'}>
           <Link href="/">
             <svg

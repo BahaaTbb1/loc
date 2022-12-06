@@ -103,4 +103,6 @@ export const IconContainer = styled.div`
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  margin-right: 32px;
+
 `;

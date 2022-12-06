@@ -6,7 +6,7 @@ import Link from 'next/link';
 export interface IResourceProps {
   title: string;
   type: 'folder' | 'file' | 'video' | 'link';
-  link: string;
+  link?: string;
 }
 
 const Resource = ({ title, type, link }: IResourceProps) => {

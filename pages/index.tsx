@@ -19,19 +19,15 @@ CoursesPage.getLayout = function getLayout(page: ReactElement) {
       <Head>
         <title>Leagues of Code</title>
       </Head>
-      <Header
+      {/* <Header
         pageTitle="Courses"
         tabs={[
           {
             current: true,
             title: 'My Courses'
-          },
-          {
-            current: false,
-            title: 'All Courses'
           }
         ]}
-      />
+      /> */}
       <SideBar />
       <>{page}</>
     </>
@@ -60,7 +56,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   } catch (error: any) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: '/login',
         permanent: false
       }
     };

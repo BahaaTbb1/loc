@@ -22,7 +22,7 @@ interface ISubmissionBar {
 }
 
 const EditorSubmissionBar = memo(({ setData, setLanguage, activityId, problemId, refetch, answer }: ISubmissionBar) => {
-  const { data: session } = useSession();
+const {data: session} = useSession()
   const [submitMutate] = useMutation(SUBMIT_MULTI_CODDING_PROBLEM, {
     context: {
       headers: {

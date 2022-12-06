@@ -8,7 +8,7 @@ export const GET_STUDENT_ACTIVITY = gql`
       description
       speaker
       start_datetime
-      problems_amount
+      problems_count
       problems {
         id
         title
@@ -47,7 +47,7 @@ export interface IStudentActivity {
     start_datetime: string;
     description: string;
     speaker: string;
-    problems_amount: number;
+    problems_count: number;
     problems: [IProblem];
     resources: [{ id: number; name: string; link: string }];
   };

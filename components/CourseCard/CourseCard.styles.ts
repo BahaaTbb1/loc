@@ -20,6 +20,7 @@ export const Container = styled.div<{
   width: ${(props) => (props.type === 'active' ? '596' : '282')}px;
   border-radius: 24px;
   border: 1px solid rgba(35, 35, 57, 0.16);
+  height: 318px;
 `;
 export const Card = styled.div`
   border-radius: 24px;
@@ -37,8 +38,8 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  height: 318px;
-  /* justify-content: space-around; */
+  height: inherit;
+  box-sizing: border-box;
   padding: 24px 0px 24px 24px;
 `;
 export const CardHeader = styled.div`

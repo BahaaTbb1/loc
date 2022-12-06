@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   border-radius: 12px;
 `;
 const Container = styled.div`
-  padding: 96px 81px 0px 96px;
+  padding: 96px 81px 196px 96px;
 `;
 const ProblemContainer = styled.div`
   display: flex;

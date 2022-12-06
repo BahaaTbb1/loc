@@ -9,7 +9,8 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useApollo } from 'lib/apolloClient';
 import { ApolloProvider } from '@apollo/client';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react"
+
 import ErrorBoundary from 'utils/ErrorBoundry';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -24,6 +25,7 @@ type AppPropsWithLayout = AppProps & {
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
   const apolloClient = useApollo(pageProps);
+  
   return getLayout(
     <SessionProvider session={session}>
       <Head>

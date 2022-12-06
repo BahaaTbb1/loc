@@ -17,7 +17,7 @@ interface IProblemProps {
 }
 
 const Problem = ({ status, isCurrent, onClick, problemId, ACtivityId, setColor }: IProblemProps) => {
-  const { data: session } = useSession();
+const {data: session} = useSession()
 
   const { data: submissionData } = useQuery<IMCProblemSubmissions>(GIT_PROBLEMS_SUBMISSIONS, {
     context: {

@@ -26,7 +26,7 @@ const GroupActivityTabs = ({ resources }: IGroupActivityTabs) => {
 
       <TabPanel>
         <TabContent id="tab1" activeTab={activeTab}>
-          <OverviewDescription>{resources ? resources[0]?.description : 'No Data Provided'}</OverviewDescription>
+          <OverviewDescription>{resources ? resources[0]?.description : 'No Data Povided'}</OverviewDescription>
         </TabContent>
         <TabContent id="tab2" activeTab={activeTab}>
           <S.Flex gap="16" style={{ flexWrap: 'wrap' }}>

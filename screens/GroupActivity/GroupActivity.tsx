@@ -23,7 +23,7 @@ import { GET_STUDENT_ACTIVITY, IStudentActivity } from 'screens/GroupChallenge/P
 const GroupActivity = () => {
   const router = useRouter();
   const { id: queryId } = router.query;
-  const { data: session } = useSession();
+const {data: session} = useSession()
   const { data } = useQuery<IActivites>(GET_ACTIVITES, {
     variables: {
       programId: queryId

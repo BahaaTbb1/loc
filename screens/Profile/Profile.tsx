@@ -31,7 +31,7 @@ const Profile = () => {
   const [disableEmail, setDisableEmail] = useState(true);
   const [disablePassword, setDisablePassword] = useState(true);
   const { data } = useQuery<IStudent>(GET_STUDENT);
-const {data: session} = useSession()
+  const { data: session } = useSession();
   const toast = useToast();
 
   const [AccountMutate] = useMutation<IStudent>(UPDATE_ACCOUNT_INFO, {

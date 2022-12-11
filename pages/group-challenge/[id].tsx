@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { GroupChallengeBar, ProblemsBar } from 'components';
 import GroupChallenge from 'screens/GroupChallenge';
 import type { NextPageWithLayout } from '../_app';
 import { ReactElement } from 'react';

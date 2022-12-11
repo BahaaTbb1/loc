@@ -29,7 +29,7 @@ const MultiChoices = ({
   activityId: number;
   problemId: number;
 }) => {
-const {data: session} = useSession()
+  const { data: session } = useSession();
   const toast = useToast();
   const [choicesRes, setChoicesRes] = useState(content.answers.map((t) => ({ selected: false, title: t })));
   const [submitMutate] = useMutation(SUBMIT_MULTI_CHOICE_PROBLEM, {

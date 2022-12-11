@@ -3,7 +3,7 @@ import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const Container = styled.div`
   display: flex;
-  margin: 0;
+  /* flex-direction:/ ; */
   position: absolute;
   margin-top: -72px;
   margin-right: -88px;
@@ -15,17 +15,16 @@ export const Container = styled.div`
 `;
 
 export const FormSide = styled.div`
-  padding: 32px 0px;
   margin-left: 120px;
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-left: 0;
-  }
+  padding: 32px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  /* height: 100vh; */
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-left: 0;
+  }
 `;
 
 export const FormHeading = styled.div`
@@ -39,10 +38,12 @@ export const FormHeading = styled.div`
 export const WelcomeBack = styled.div`
   font-family: 'Inter';
   font-style: normal;
+  text-align: center;
   font-weight: 400;
   font-size: 16px;
   line-height: 20px;
   color: ${defaultTheme.color.neutrals.tempN3};
+  width: 375px;
 `;
 
 export const LoginTitle = styled.div`
@@ -82,6 +83,8 @@ export const SubmitButton = styled.button`
   border: none;
   display: flex;
   align-items: center;
+  justify-content: center;
+
   cursor: pointer;
   background: linear-gradient(90deg, #3870ff 0%, #3844ff 100%);
   border-radius: 12px;
@@ -95,7 +98,9 @@ export const SubmitButton = styled.button`
   /* Neutral/White */
 
   color: #ffffff;
-  padding: 19.5px 167px;
+  /* padding: 19.5px 143.5px; */
+  width: 375px;
+  height: 56px;
 `;
 
 export const Line = styled.div`
@@ -168,12 +173,12 @@ export const Banner = styled.div`
 
 export const QouteTitle = styled.div`
   font-family: 'Inter';
-  z-index: 2;
   font-style: normal;
   font-weight: 700;
-  font-size: 52.7055px;
-  line-height: 64px;
-
+  font-size: 18px;
+  line-height: 22px;
+  width: 315px;
+  height: 70px;
   /* identical to box height, or 122% */
 
   color: #ffffff;
@@ -199,8 +204,8 @@ export const Qoute = styled.div`
 `;
 
 export const BannerContainer = styled.div`
-  width: 432px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 32px;
   /* position:re ; */
@@ -210,11 +215,29 @@ export const Pattern = styled.div`
   /* margin-left:200px ; */
   /* position: relative; */
   position: absolute;
-  top: 52px;
+  bottom: 34px;
+  right: 0;
+  img {
+    object-fit: cover;
+  }
+  /* bottom: calc() ; */
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
+`;
+
+export const BannerSub = styled.div`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  /* or 129% */
+
+  color: #ffffff;
+
+  opacity: 0.6;
 `;

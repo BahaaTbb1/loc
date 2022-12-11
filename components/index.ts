@@ -45,5 +45,5 @@ export {
   TabContent,
   TabNavItem,
   Table,
-  TeacherProfile,
+  TeacherProfile
 };

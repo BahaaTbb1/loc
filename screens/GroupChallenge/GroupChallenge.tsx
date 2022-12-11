@@ -18,7 +18,7 @@ const GroupChallenge = () => {
   const [curProblemColore, setCurProblemColore] = useState(0);
   const router = useRouter();
   const { id: queryId } = router.query;
-const {data: session} = useSession()
+  const { data: session } = useSession();
 
   const { data } = useQuery<IStudentActivity>(GET_STUDENT_ACTIVITY, {
     variables: {

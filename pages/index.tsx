@@ -16,19 +16,6 @@ const CoursesPage: NextPageWithLayout = () => {
 CoursesPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <Head>
-        <title>Leagues of Code</title>
-      </Head>
-      {/* <Header
-        pageTitle="Courses"
-        tabs={[
-          {
-            current: true,
-            title: 'My Courses'
-          }
-        ]}
-      /> */}
-      <SideBar />
       <>{page}</>
     </>
   );

@@ -20,15 +20,18 @@ import {
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import Link from 'next/link';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const ForgetPassword = () => {
   const [error] = useState<null | string>(null);
-
+  const router = useRouter();
   const formik = useFormik({
     initialValues: {
       email: ''
     },
     onSubmit: async (values) => {
+      resetApi();
       // eslint-disable-next-line no-console
       console.log(values);
     },
@@ -36,7 +39,27 @@ const ForgetPassword = () => {
       email: yup.string().email('Must be a valid email').required('Email is required')
     })
   });
+  const resetApi = async () => {
+    const data = {
+      email: formik.values.email
+    };
+    const res = await fetch('https://dev-api.leaguesofcode.com/api/v1/password/email', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const user = await res.json();
 
+    // If no error and we have user data, return it
+    if (res.ok && user) {
+      router.push('new-password');
+      return user;
+    } else if (res?.status !== 200) {
+      throw new Error('Something went wrong');
+    } else {
+      return null;
+    }
+  };
   return (
     <Container>
       <FormSide>

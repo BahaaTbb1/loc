@@ -20,7 +20,7 @@ ProfilePage.getLayout = function getLayout(page: ReactElement) {
         <title>Leagues of Code</title>
       </Head>
       <Header
-        fullWidth={true}
+        fullWidth={false}
         back={true}
         pageTitle="User Profile"
         tabs={[

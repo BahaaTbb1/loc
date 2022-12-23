@@ -7,11 +7,11 @@ export const Container = styled.div`
   top: 0px;
   left: 0;
   /* height: 100% ; */
-  max-width: 88px;
+  max-width: 88px !important;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 38px 23px;
+  padding: 38px 0px 38px 24px;
   gap: 138px;
   height: 100%;
   background-color: ${defaultTheme.color.neutrals.white};
@@ -19,21 +19,38 @@ export const Container = styled.div`
 interface IPage {
   active: boolean;
 }
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  width: 64px;
+  cursor: pointer;
+  height: 64px;
+`;
 
 export const Page = styled.div<IPage>`
-  cursor: pointer;
   ${(props) => {
     if (props.active) {
       return css`
-        width: 64px;
-        height: 64px;
+        width: 45px;
+        height: 45px;
         background-color: ${defaultTheme.color.main.mainBlue};
         border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
       `;
-    } else return css``;
+    } else
+      return css`
+        width: 45px;
+        height: 45px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      `;
   }}
   rotate: 45deg;
 `;

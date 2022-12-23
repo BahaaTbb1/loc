@@ -1,29 +1,37 @@
 import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
-export const Container = styled.section`
+export const Container = styled.div`
   margin-top: 104px;
   margin-left: 16px;
   padding: 16px 64px 0px 64px;
   display: flex;
   gap: 32px;
 `;
+export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 export const LeftSide = styled.section`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 805px;
+  width: calc(100vw - 560px);
+  max-width: 805px;
+  @media (min-width: 1422) {
+  }
 `;
 export const RightSide = styled.section`
-  position: fixed;
-  right: 119px;
+  /* position: fixed; */
+  /* right: 119px; */
   display: flex;
   flex-direction: column;
-  height: 100%;
   scroll-snap-type: y mandatory;
   scroll-padding: 20px;
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
+
   scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
@@ -43,7 +51,6 @@ export const ActivityHeaderTitle = styled.div`
   font-size: 18px;
   line-height: 22px;
 `;
-
 export const CurrentActivity = styled.div`
   padding: 14px;
   background: ${defaultTheme.color.neutrals.white};
@@ -53,6 +60,7 @@ export const CurrentActivity = styled.div`
   justify-content: center;
   cursor: pointer;
 `;
+
 export const ActivityList = styled.div`
   display: flex;
   flex-direction: column;

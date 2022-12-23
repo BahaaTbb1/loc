@@ -1,9 +1,8 @@
 import { HttpLink } from '@apollo/client';
-import { Header, SideBar } from 'components';
+import { SideBar } from 'components';
 import { addApolloState, initializeApollo } from 'lib/apolloClient';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
-import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import GroupActivity from 'screens/GroupActivity';
 import { GET_ACTIVITES } from 'screens/GroupActivity/Contstants';
@@ -16,26 +15,6 @@ const GroupActivityPage: NextPageWithLayout = () => {
 GroupActivityPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <Head>
-        <title>Leagues of Code</title>
-      </Head>
-      <Header
-        pageTitle="League 5: Module 7"
-        tabs={[
-          {
-            current: false,
-            title: 'Overview'
-          },
-          {
-            current: true,
-            title: 'Activities'
-          },
-          {
-            current: false,
-            title: 'Ranking'
-          }
-        ]}
-      />
       <SideBar />
       <>{page}</>
     </>

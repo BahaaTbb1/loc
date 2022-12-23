@@ -18,7 +18,8 @@ const moduleExports = {
     GRAPHQL_URL: process.env.GRAPHQL_URL,
     LOGIN_URL: process.env.LOGIN_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    REQUEST_PASS_RESET_URL: process.env.REQUEST_PASS_RESET_URL
   },
   sentry: {
     // Use `hidden-source-map` rather than `source-map` as the Webpack `devtool`

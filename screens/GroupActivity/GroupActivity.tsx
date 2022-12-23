@@ -5,12 +5,13 @@ import {
   ActivityHeaderTitle,
   ActivityList,
   Container,
+  ContentContainer,
   CurrentActivity,
   LeftSide,
   RightSide
 } from './GroupActivity.styles';
 
-import { Activity, ActivityTypeRadio, LiveClass } from 'components';
+import { Activity, ActivityTypeRadio, Header, LiveClass } from 'components';
 import GroupActivityTabs from './GroupActivityTabs';
 import Image from 'next/image';
 import { useQuery } from '@apollo/client';
@@ -19,6 +20,7 @@ import { useRouter } from 'next/router';
 import PracticeExercises from './PracticeExercises';
 import { useSession } from 'next-auth/react';
 import { GET_STUDENT_ACTIVITY, IStudentActivity } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
+import Head from 'next/head';
 
 const GroupActivity = () => {
   const router = useRouter();
@@ -66,44 +68,79 @@ const GroupActivity = () => {
   }, [checked]);
 
   return (
-    <Container>
-      <LeftSide>
-        {type === 2 || type === 7 ? <LiveClass /> : <PracticeExercises data={activitesData} Aid={checked} />}
-        <GroupActivityTabs resources={resources} />
-      </LeftSide>
-      <RightSide>
-        <ActivityHeader>
-          <ActivityHeaderTitle> Activity List</ActivityHeaderTitle>
-          <CurrentActivity>
-            <Image
-              alt="current-activity"
-              color="#ADB3CF"
-              src="/assets/images/icons/common/round-today.svg"
-              width={20}
-              height={20}
-            />
-          </CurrentActivity>
-        </ActivityHeader>
-        {data?.getLecturesInProgramForCurrentStudent.map(({ name, activities, id }, index) => (
-          <Activity key={index} id={id} title={name} toggle={setOpen} progress={index} open={open === id} week={id}>
-            <ActivityList>
-              {activities.map(({ id: activityId, title, activity_type_id }) => (
-                <ActivityTypeRadio
-                  key={activityId}
-                  classId={id}
-                  id={activityId}
-                  title={title}
-                  type={activity_type_id}
-                  setCurrent={handleCurrent}
-                  checked={checked === activityId}
+    <>
+      <Head>
+        <title>Leagues of Code</title>
+      </Head>
+      <Header
+        pageTitle="League 5: Module 7"
+        tabs={[
+          {
+            current: false,
+            title: 'Overview'
+          },
+          {
+            current: true,
+            title: 'Activities'
+          },
+          {
+            current: false,
+            title: 'Ranking'
+          }
+        ]}
+      />
+      <ContentContainer>
+        <Container>
+          <LeftSide>
+            {type === 2 || type === 7 ? <LiveClass /> : <PracticeExercises data={activitesData} Aid={checked} />}
+            <GroupActivityTabs resources={resources} />
+          </LeftSide>
+          <RightSide>
+            <ActivityHeader>
+              <ActivityHeaderTitle> Activity List</ActivityHeaderTitle>
+              <CurrentActivity>
+                <Image
+                  alt="current-activity"
+                  color="#ADB3CF"
+                  src="/assets/images/icons/common/round-today.svg"
+                  width={20}
+                  height={20}
                 />
+              </CurrentActivity>
+            </ActivityHeader>
+            <div style={{ overflow: 'scroll', height: '800px' }}>
+              {data?.getLecturesInProgramForCurrentStudent.map(({ name, activities, id }, index) => (
+                <Activity
+                  key={index}
+                  id={id}
+                  title={name}
+                  toggle={setOpen}
+                  progress={index}
+                  open={open === id}
+                  week={id}
+                >
+                  <ActivityList>
+                    {activities.map(({ id: activityId, title, activity_type_id }) => (
+                      <ActivityTypeRadio
+                        key={activityId}
+                        classId={id}
+                        id={activityId}
+                        title={title}
+                        type={activity_type_id}
+                        setCurrent={handleCurrent}
+                        checked={checked === activityId}
+                      />
+                    ))}
+                  </ActivityList>
+                </Activity>
               ))}
-            </ActivityList>
-          </Activity>
-        ))}
-        <div style={{ marginBottom: '200px' }}></div>
-      </RightSide>
-    </Container>
+            </div>
+
+            <div style={{ marginBottom: '200px' }}></div>
+          </RightSide>
+        </Container>
+      </ContentContainer>
+    </>
   );
 };
 

@@ -26,6 +26,7 @@ import * as yup from 'yup';
 import { useSession } from 'next-auth/react';
 import { ImageLoader } from 'utils/common';
 import { useToast } from 'hooks/useToast';
+import SideBar from 'components/SideBar';
 
 const Profile = () => {
   const [disableEmail, setDisableEmail] = useState(true);
@@ -149,138 +150,141 @@ const Profile = () => {
     setDisablePassword(true);
   };
   return (
-    <Container>
-      <SectionContainer onSubmit={AccountFormik.handleSubmit}>
-        <TitleSection>Account Info</TitleSection>
-        <FormContainer>
-          <FormFieldEdit
-            variant="big"
-            label="Email"
-            type="text"
-            changeEdit={setDisableEmail}
-            disabled={disableEmail}
-            value={AccountFormik.values.email}
-            error={!!(AccountFormik.touched.email && AccountFormik.errors.email)}
-            message={AccountFormik.errors.email}
-            placeholder="email@example.com"
-            onChange={(e) => AccountFormik.setFieldValue('email', e.target.value)}
-          />
-          <FormFieldEdit
-            variant="big"
-            label="Password"
-            type="password"
-            error={!!(AccountFormik.touched.password && AccountFormik.errors.password)}
-            message={AccountFormik.errors.password}
-            changeEdit={setDisablePassword}
-            disabled={disablePassword}
-            value={AccountFormik.values.password}
-            onChange={(e) => AccountFormik.setFieldValue('password', e.target.value)}
-          />
-          {!disablePassword && (
+    <>
+      <SideBar />
+      <Container>
+        <SectionContainer onSubmit={AccountFormik.handleSubmit}>
+          <TitleSection>Account Info</TitleSection>
+          <FormContainer>
             <FormFieldEdit
               variant="big"
-              label="Confirm password"
+              label="Email"
+              type="text"
+              changeEdit={setDisableEmail}
+              disabled={disableEmail}
+              value={AccountFormik.values.email}
+              error={!!(AccountFormik.touched.email && AccountFormik.errors.email)}
+              message={AccountFormik.errors.email}
+              placeholder="email@example.com"
+              onChange={(e) => AccountFormik.setFieldValue('email', e.target.value)}
+            />
+            <FormFieldEdit
+              variant="big"
+              label="Password"
               type="password"
-              error={!!(AccountFormik.touched.confirmPassword && AccountFormik.errors.confirmPassword)}
-              message={AccountFormik.errors.confirmPassword}
-              // changeEdit={setDisablePassword}
-              disabled={false}
-              value={AccountFormik.values.confirmPassword}
-              onChange={(e) => AccountFormik.setFieldValue('confirmPassword', e.target.value)}
+              error={!!(AccountFormik.touched.password && AccountFormik.errors.password)}
+              message={AccountFormik.errors.password}
+              changeEdit={setDisablePassword}
+              disabled={disablePassword}
+              value={AccountFormik.values.password}
+              onChange={(e) => AccountFormik.setFieldValue('password', e.target.value)}
             />
-          )}
-          <S.Flex alignItems="center" justifyContent="space-between">
-            <div></div>
-            {(!disableEmail || !disablePassword) && (
-              <ButtonContainer>
-                <CancelButton type="button" onClick={handleCanacel}>
-                  Cancel
-                </CancelButton>
-                <SaveButton type="submit">Save</SaveButton>
-              </ButtonContainer>
-            )}
-          </S.Flex>
-        </FormContainer>
-      </SectionContainer>
-
-      <SectionContainer onSubmit={ProfileFormik.handleSubmit}>
-        <TitleSection>
-          <div>Profile</div>
-          <ProfileSaveButton type="submit">Save</ProfileSaveButton>
-        </TitleSection>
-        <FormContainer>
-          <S.Flex gap="16" justifyContent="space-between">
-            <FormFieldEdit
-              variant="small"
-              label="First name"
-              placeholder="First Name"
-              value={ProfileFormik.values.firstname}
-              onChange={(e) => ProfileFormik.setFieldValue('firstname', e.target.value)}
-              error={!!(ProfileFormik.touched.firstname && ProfileFormik.errors.firstname)}
-              message={ProfileFormik.errors.firstname}
-            />
-
-            <FormFieldEdit
-              variant="small"
-              label="Last name"
-              value={ProfileFormik.values.lastname}
-              placeholder="Last Name"
-              onChange={(e) => ProfileFormik.setFieldValue('lastname', e.target.value)}
-              error={!!(ProfileFormik.touched.lastname && ProfileFormik.errors.lastname)}
-              message={ProfileFormik.errors.lastname}
-            />
-          </S.Flex>
-          <FormFieldEdit
-            variant="big"
-            label="Date"
-            type="date"
-            placeholder="12 / Dec / 1998"
-            value={ProfileFormik.values.birthdate}
-            onChange={(e) => ProfileFormik.setFieldValue('birthdate', e.target.value)}
-            error={!!(ProfileFormik.touched.birthdate && ProfileFormik.errors.birthdate)}
-            message={ProfileFormik.errors.birthdate}
-          />
-          <FormFieldEdit
-            variant="big"
-            label="Nationality"
-            placeholder="Syria"
-            value={ProfileFormik.values.nationality}
-            onChange={(e) => ProfileFormik.setFieldValue('nationality', e.target.value)}
-            error={!!(ProfileFormik.touched.nationality && ProfileFormik.errors.nationality)}
-            message={ProfileFormik.errors.nationality}
-          />
-          <ProfileWrapper>
-            <ProfileSection>
-              <ProfileInfoTitle>Profile Picture</ProfileInfoTitle>
-              <ProfileInfoDesc>
-                Use an appropiate picture, ideally of your face. Recommended size is 200 x 200px
-              </ProfileInfoDesc>
-              <UploadButton>Upload</UploadButton>
-            </ProfileSection>
-            <ProfileImage>
-              <Image
-                style={{
-                  flex: '1 1 auto',
-                  width: '180px !important',
-                  height: '180px !important',
-                  border: '1px #solid DEE7EE',
-                  borderRadius: '16px'
-                }}
-                alt="user"
-                loader={ImageLoader}
-                src={
-                  data?.currentStudent.avatar.image
-                    ? data?.currentStudent.avatar.image
-                    : '/assets/images/user/profile-default.png'
-                }
-                height="180"
-                width="180"
+            {!disablePassword && (
+              <FormFieldEdit
+                variant="big"
+                label="Confirm password"
+                type="password"
+                error={!!(AccountFormik.touched.confirmPassword && AccountFormik.errors.confirmPassword)}
+                message={AccountFormik.errors.confirmPassword}
+                // changeEdit={setDisablePassword}
+                disabled={false}
+                value={AccountFormik.values.confirmPassword}
+                onChange={(e) => AccountFormik.setFieldValue('confirmPassword', e.target.value)}
               />
-            </ProfileImage>
-          </ProfileWrapper>
-        </FormContainer>
-      </SectionContainer>
-    </Container>
+            )}
+            <S.Flex alignItems="center" justifyContent="space-between">
+              <div></div>
+              {(!disableEmail || !disablePassword) && (
+                <ButtonContainer>
+                  <CancelButton type="button" onClick={handleCanacel}>
+                    Cancel
+                  </CancelButton>
+                  <SaveButton type="submit">Save</SaveButton>
+                </ButtonContainer>
+              )}
+            </S.Flex>
+          </FormContainer>
+        </SectionContainer>
+
+        <SectionContainer onSubmit={ProfileFormik.handleSubmit}>
+          <TitleSection>
+            <div>Profile</div>
+            <ProfileSaveButton type="submit">Save</ProfileSaveButton>
+          </TitleSection>
+          <FormContainer>
+            <S.Flex gap="16" justifyContent="space-between">
+              <FormFieldEdit
+                variant="small"
+                label="First name"
+                placeholder="First Name"
+                value={ProfileFormik.values.firstname}
+                onChange={(e) => ProfileFormik.setFieldValue('firstname', e.target.value)}
+                error={!!(ProfileFormik.touched.firstname && ProfileFormik.errors.firstname)}
+                message={ProfileFormik.errors.firstname}
+              />
+
+              <FormFieldEdit
+                variant="small"
+                label="Last name"
+                value={ProfileFormik.values.lastname}
+                placeholder="Last Name"
+                onChange={(e) => ProfileFormik.setFieldValue('lastname', e.target.value)}
+                error={!!(ProfileFormik.touched.lastname && ProfileFormik.errors.lastname)}
+                message={ProfileFormik.errors.lastname}
+              />
+            </S.Flex>
+            <FormFieldEdit
+              variant="big"
+              label="Date"
+              type="date"
+              placeholder="12 / Dec / 1998"
+              value={ProfileFormik.values.birthdate}
+              onChange={(e) => ProfileFormik.setFieldValue('birthdate', e.target.value)}
+              error={!!(ProfileFormik.touched.birthdate && ProfileFormik.errors.birthdate)}
+              message={ProfileFormik.errors.birthdate}
+            />
+            <FormFieldEdit
+              variant="big"
+              label="Nationality"
+              placeholder="Syria"
+              value={ProfileFormik.values.nationality}
+              onChange={(e) => ProfileFormik.setFieldValue('nationality', e.target.value)}
+              error={!!(ProfileFormik.touched.nationality && ProfileFormik.errors.nationality)}
+              message={ProfileFormik.errors.nationality}
+            />
+            <ProfileWrapper>
+              <ProfileSection>
+                <ProfileInfoTitle>Profile Picture</ProfileInfoTitle>
+                <ProfileInfoDesc>
+                  Use an appropiate picture, ideally of your face. Recommended size is 200 x 200px
+                </ProfileInfoDesc>
+                <UploadButton>Upload</UploadButton>
+              </ProfileSection>
+              <ProfileImage>
+                <Image
+                  style={{
+                    flex: '1 1 auto',
+                    width: '180px !important',
+                    height: '180px !important',
+                    border: '1px #solid DEE7EE',
+                    borderRadius: '16px'
+                  }}
+                  alt="user"
+                  loader={ImageLoader}
+                  src={
+                    data?.currentStudent.avatar.image
+                      ? data?.currentStudent.avatar.image
+                      : '/assets/images/user/profile-default.png'
+                  }
+                  height="180"
+                  width="180"
+                />
+              </ProfileImage>
+            </ProfileWrapper>
+          </FormContainer>
+        </SectionContainer>
+      </Container>
+    </>
   );
 };
 

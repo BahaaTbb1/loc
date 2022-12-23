@@ -2,7 +2,6 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* align-content: space-between; */
   justify-content: space-between;
   width: 100%;
   background-color: #08223e;
@@ -19,6 +18,7 @@ const ProblemContainer = styled.div`
 `;
 const ProblemText = styled.div`
   display: flex;
+
   flex-direction: column;
   align-content: center;
   gap: 12px;

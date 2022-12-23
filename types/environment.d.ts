@@ -5,6 +5,7 @@ declare global {
       GRAPHQL_URL: string!;
       NEXTAUTH_URL: string!;
       NEXTAUTH_SECRET: string!;
+      REQUEST_PASS_RESET_URL: string;
     }
   }
 }

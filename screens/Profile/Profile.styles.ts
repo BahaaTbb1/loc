@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
-import Image from 'next/image';
-
 export const Container = styled.section`
-  margin-top: 110px;
+  margin-top: 126px;
   margin-left: 48px;
   display: flex;
   flex-direction: column;

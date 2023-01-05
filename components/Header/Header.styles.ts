@@ -1,25 +1,32 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 import { S } from 'globalstyles';
-import Link from 'next/link';
 
 export const Wrapper = styled.div<{ fullWidth?: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
-  width: ${({ fullWidth }) => (fullWidth ? css`100%` : css`calc(100% - 88px)`)};
+  @media (min-width: 769px) {
+    width: ${({ fullWidth }) => (fullWidth ? css`100%` : css`calc(100% - 88px)`)};
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   background-color: rgba(255, 255, 255, 0.85) !important;
-
   z-index: 10;
   box-shadow: 0px 0px 8px rgba(35, 35, 57, 0.06);
   backdrop-filter: blur(16px);
 `;
 export const Container = styled.div`
-  padding: 32px 64px;
+  @media (min-width: 768px) {
+    padding: 32px 64px;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @media (max-width: 769px) {
+  }
 `;
 
 export const IconContainer = styled.div`
@@ -61,4 +68,36 @@ export const BackButtonContainer = styled.div`
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
+  @media (max-width: 768px) {
+    flex: 0 1 auto;
+  }
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  align-self: flex-end;
+
+  @media (max-width: 769px) {
+    display: none;
+  }
+`;
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+  @media (min-width: 768px) {
+    gap: 12px;
+  }
+  @media (max-width: 768px) {
+    /* justify-content:center ; */
+    padding: 20px 16px;
+  }
+`;
+export const Tabs = styled.div`
+  display: flex;
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding: 16px 102.5px;
+  }
 `;

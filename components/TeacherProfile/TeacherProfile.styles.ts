@@ -7,14 +7,14 @@ export const TeacherProfileContainer = styled.div`
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
-  padding: 24px 0px;
+  padding: 24px 16px;
   gap: 16px;
 
   background: #ffffff;
   border: 1px solid #dee7ee;
   border-radius: 16px;
 
-  width: 282px;
+  min-width: 282px;
   height: 314px;
 `;
 
@@ -55,7 +55,7 @@ export const BookingButton = styled.button`
   padding: 13px 24px;
   gap: 10px;
 
-  width: 234px;
+  width: 100%;
   height: 48px;
 
   /* Primary / Gradient */

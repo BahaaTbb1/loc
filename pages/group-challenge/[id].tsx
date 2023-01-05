@@ -44,7 +44,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return addApolloState(apolloClient, {
       props: {}
     });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return {
       redirect: {

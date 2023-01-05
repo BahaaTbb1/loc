@@ -11,7 +11,8 @@ import {
   InfoContainer,
   Completed,
   OverAll,
-  Div
+  Div,
+  DataDiv
 } from './ProgramDetails.styles';
 
 export interface IProgramDetailsProps {
@@ -44,21 +45,23 @@ const ProgramDetails = ({
           </Date>
         </DateContainer>
       </Program>
-      <InfoContainer>
-        <S.Flex gap="4" alignItems="baseLine">
-          <Completed>{problemsSolved}</Completed>
-          <OverAll>/ {porblems}</OverAll>
-        </S.Flex>
-        <Div>Problems Solved</Div>
-      </InfoContainer>
+      <DataDiv>
+        <InfoContainer>
+          <S.Flex gap="4" alignItems="baseLine">
+            <Completed>{problemsSolved}</Completed>
+            <OverAll>/ {porblems}</OverAll>
+          </S.Flex>
+          <Div>Problems Solved</Div>
+        </InfoContainer>
 
-      <InfoContainer>
-        <S.Flex gap="4" alignItems="baseLine">
-          <Completed>{activitesCompleted}</Completed>
-          <OverAll>/ {activites}</OverAll>
-        </S.Flex>
-        <Div>Activities Completed</Div>
-      </InfoContainer>
+        <InfoContainer>
+          <S.Flex gap="4" alignItems="baseLine">
+            <Completed>{activitesCompleted}</Completed>
+            <OverAll>/ {activites}</OverAll>
+          </S.Flex>
+          <Div>Activities Completed</Div>
+        </InfoContainer>
+      </DataDiv>
     </ProgramDetailsContainer>
   );
 };

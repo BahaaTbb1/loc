@@ -15,9 +15,15 @@ export const Container = styled.div<{
   type: 'active' | 'enrolled' | 'completed';
   color: 'cyan' | 'yellow' | 'purple' | 'red' | 'green' | undefined;
 }>`
+  cursor: pointer;
   z-index: 9;
   background: ${(props) => colors[`${props.color}`]};
-  width: ${(props) => (props.type === 'active' ? '596' : '282')}px;
+  @media (min-width: 768px) {
+    width: ${(props) => (props.type === 'active' ? '596' : '282')}px;
+  }
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   border-radius: 24px;
   border: 1px solid rgba(35, 35, 57, 0.16);
   height: 318px;
@@ -29,6 +35,7 @@ export const Card = styled.div`
   background-image: url('/assets/images/icons/common/polygon.svg');
   background-repeat: no-repeat;
   overflow: hidden;
+  width: 100%;
 
   z-index: 1;
   color: ${defaultTheme.color.neutrals.white};

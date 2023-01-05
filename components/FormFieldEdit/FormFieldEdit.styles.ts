@@ -19,11 +19,17 @@ export const FormFieldEditContainer = styled.div<{ variant: 'small' | 'big'; err
   ${({ variant }) => {
     if (variant === 'big')
       return css`
-        width: 512px;
+        width: 100%;
+        max-width: 512px;
       `;
     else
       return css`
-        width: 248px;
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+        @media (min-width: 769px) {
+          width: 248px;
+        }
       `;
   }}
 `;

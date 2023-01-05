@@ -1,7 +1,17 @@
 import { S } from 'globalstyles';
 import Link from 'utils/ActiveLink';
 import React from 'react';
-import { Container, Wrapper, Option, IconContainer, Polygon, BackButtonContainer } from './Header.styles';
+import {
+  Container,
+  Wrapper,
+  Option,
+  IconContainer,
+  Polygon,
+  BackButtonContainer,
+  Profile,
+  Title,
+  Tabs
+} from './Header.styles';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -22,15 +32,21 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
   return (
     <Wrapper fullWidth={fullWidth}>
       <Container>
-        <S.Flex gap="12" alignItems="center">
+        <Title>
           {back && (
             <BackButtonContainer onClick={handleClick}>
-              <Image alt="right arrow" width={24} height={24} src="/assets/images/icons/common/arrow_left_black.svg" />
+              <Image
+                alt="right arrow"
+                layout="fixed"
+                width={24}
+                height={24}
+                src="/assets/images/icons/common/arrow_left_black.svg"
+              />
             </BackButtonContainer>
           )}
-          <S.H2 style={{ color: '#232339' }}>{pageTitle}</S.H2>
-        </S.Flex>
-        <S.Flex alignItems="center">
+          <S.H2 style={{ color: '#232339', margin: 'auto' }}>{pageTitle}</S.H2>
+        </Title>
+        <Tabs>
           {tabs.map(({ current, title }) => (
             <S.Flex
               style={{
@@ -46,15 +62,15 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
               {current && <Polygon />}
             </S.Flex>
           ))}
-        </S.Flex>
-        <S.Flex style={{ alignSelf: 'flex-end' }} alignItems="center" gap="24">
+        </Tabs>
+        <Profile>
           <Link href="/profile">
             <img style={{ cursor: 'pointer' }} src="/assets/images/user/default-header.png" loading="lazy" />
           </Link>
           <IconContainer onClick={() => signOut()}>
             <img src="/assets/images/icons/common/back.svg" loading="lazy" />
           </IconContainer>
-        </S.Flex>
+        </Profile>
       </Container>
     </Wrapper>
   );

@@ -3,9 +3,15 @@ import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const ClassDetailsContainer = styled.main`
   margin-top: calc(16px + 106px);
-  margin-left: calc(14px + 64px);
   display: flex;
-  /* flex-direction:column ; */
+  justify-content: center;
+  @media (min-width: 768px) {
+    margin-left: 64px;
+    margin-right: 64px;
+  }
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
   gap: 32px;
 `;
 
@@ -13,8 +19,8 @@ export const ProgramContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
-  width: 910px;
   overflow: hidden;
+  /* margin:0px 64px ; */
 `;
 
 export const ParticipantHeading = styled.section`
@@ -36,7 +42,7 @@ export const ParticipantsContainer = styled.div`
   border-radius: 16px;
   overflow: hidden;
   box-sizing: border-box;
-  max-width: 280px;
+  min-width: 280px;
   /* Auto layout */
 
   display: flex;

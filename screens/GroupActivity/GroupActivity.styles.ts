@@ -2,25 +2,32 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const Container = styled.div`
-  margin-top: 104px;
-  margin-left: 16px;
-  padding: 16px 64px 0px 64px;
   display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
   gap: 32px;
 `;
 export const ContentContainer = styled.div`
+  margin-left: 16px;
   display: flex;
+  margin-top: 124px;
+
   flex-direction: column;
   align-items: center;
 `;
 export const LeftSide = styled.section`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 16px;
-  width: calc(100vw - 560px);
-  max-width: 805px;
-  @media (min-width: 1422) {
+
+  @media (min-width: 769px) {
+    width: calc(100vw - 560px);
   }
+  max-width: 805px;
 `;
 export const RightSide = styled.section`
   /* position: fixed; */

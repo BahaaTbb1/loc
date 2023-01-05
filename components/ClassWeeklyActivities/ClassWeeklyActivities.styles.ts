@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
+import Link from 'next/link';
 
 export const ClassWeeklyActivitiesContainer = styled.div`
   background: #ffffff;
@@ -22,22 +23,37 @@ export const HeaderContainer = styled.div`
 
 export const HeaderTitle = styled.div`
   font-weight: 700;
-  font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
   line-height: 100%;
   /* identical to box height, or 20px */
 `;
 
 export const CurrentWeek = styled.div`
   font-weight: 700;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
 
-  font-size: 20px;
   line-height: 100%;
   margin-right: 8px;
 `;
 
 export const OverAllWeeks = styled.div`
   font-weight: 400;
-  font-size: 18px;
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+  @media (min-width: 768px) {
+    font-size: 20px;
+  }
   line-height: 22px;
 
   color: ${defaultTheme.color.neutrals.tempN3};
@@ -52,12 +68,17 @@ export const ActivityTypeRadioContainer = styled.div<{ checked: boolean }>`
   ${(props) =>
     props.checked &&
     css`
-      border: 2px solid #3959ff;
+      @media (min-width: 768px) {
+        border: 2px solid #3959ff;
+      }
       border-radius: 12px;
     `}
-  &:hover {
-    background-color: ${defaultTheme.color.neutrals.tempN1};
+  @media (min-width: 768px) {
+    &:hover {
+      background-color: ${defaultTheme.color.neutrals.tempN1};
+    }
   }
+  outline: none;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -67,25 +88,42 @@ export const ActivityTypeRadioContainer = styled.div<{ checked: boolean }>`
 export const ActivityTypeRadioWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 40px;
+  @media (min-width: 768px) {
+    gap: 40px;
+  }
+  @media (max-width: 769px) {
+    gap: 16px;
+  }
   padding: 34px 32px;
 
   border-bottom: 1px solid #dee7ee;
-
-  cursor: pointer;
   /* width: 387px; */
 `;
 
 export const ActivityTitle = styled.div<{ checked: boolean }>`
   font-weight: 700;
-  font-size: 18px;
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+  white-space: nowrap;
+
   line-height: 22px;
   color: ${(props) => (props.checked ? defaultTheme.color.neutrals.tempN4 : defaultTheme.color.neutrals.black)};
 `;
 
 export const Date = styled.div`
   font-weight: 400;
-  font-size: 14px;
+  @media (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
   line-height: 18px;
   /* identical to box height, or 129% */
 
@@ -103,5 +141,7 @@ export const IconContainer = styled.div`
   padding: 8px;
   border-radius: 8px;
   cursor: pointer;
-  margin-right: 32px;
+  @media (min-width: 768px) {
+    margin-right: 32px;
+  }
 `;

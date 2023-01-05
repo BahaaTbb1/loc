@@ -27,14 +27,25 @@ const ActivityClass = ({ id, checked, title, setCurrent, date }: IActivityTypeRa
     <ActivityTypeRadioContainer checked={checked}>
       <ActivityTypeRadioWrapper onClick={() => setCurrent(id)}>
         {checked ? (
-          <Image src="/assets/images/icons/common/filled-circle.svg" width={24} height={24} alt="checked" />
+          <Image
+            src="/assets/images/icons/common/filled-circle.svg"
+            layout="fixed"
+            width={48}
+            height={48}
+            alt="checked"
+          />
         ) : (
-          <Image src="/assets/images/icons/common/empty-circle.svg" width={24} height={24} alt="not checked" />
+          <Image
+            src="/assets/images/icons/common/empty-circle.svg"
+            layout="fixed"
+            width={24}
+            height={24}
+            alt="not checked"
+          />
         )}
         <S.Flex direction="column" gap="15">
           <ActivityTitle checked={checked}>{title}</ActivityTitle>
           <S.Flex gap="10" alignItems="center">
-            <Image src="/assets/images/icons/common/clock-blue.svg" width={24} height={24} alt="clock" />
             <Date>{date}</Date>
           </S.Flex>
         </S.Flex>
@@ -42,9 +53,15 @@ const ActivityClass = ({ id, checked, title, setCurrent, date }: IActivityTypeRa
       <Link href={`/group-activity/${queryId}`}>
         <IconContainer>
           <Image
-            style={{ rotate: '180deg' }}
+            style={{
+              rotate: '180deg',
+              minWidth: '24px !important',
+              minHeight: '24px !important',
+              width: '24px !important'
+            }}
             alt="right arrow"
             width={24}
+            layout="fixed"
             height={24}
             src="/assets/images/icons/common/arrow_left_black.svg"
           />

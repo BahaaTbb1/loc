@@ -21,7 +21,7 @@ const ParticipantsC = ({ participants }: IParticipantsCProps) => {
       <ParticipantHeading>
         <S.Flex alignItems="center" gap="8">
           <ParticipantTitle>Participants</ParticipantTitle>
-          <ParticipantCount>(20)</ParticipantCount>
+          <ParticipantCount>({participants?.length})</ParticipantCount>
         </S.Flex>
         <Image
           style={{ cursor: 'pointer' }}

@@ -49,7 +49,7 @@ const GroupChallenge = () => {
     <>
       <GroupChallengeBar
         problemColor={curProblemColore}
-        problem={{ id: problemData?.id, title: problemData?.title }}
+        problem={{ id: 1, title: problemData?.title }}
         nextProblem={() => {
           if (problemsIds)
             problemsIds.indexOf(Number(problemData?.id)) < problemsIds?.length - 1

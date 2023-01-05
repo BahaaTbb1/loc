@@ -9,15 +9,12 @@ const Stepper = ({ type, fillType = 'default' }: IStepperProps) => {
   return (
     <>
       <svg
-        style={{ cursor: 'pointer' }}
-        width="87"
-        height="24"
+        style={{ cursor: 'pointer', minWidth: '24px' }}
         viewBox="0 0 87 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_1701_18110)">
-          <rect width="86.2" height="24" transform="translate(0.599609)" fill="white" />
           {type != 'last' && (
             <path
               d="M86.7998 12L43.6998 12"

@@ -12,7 +12,8 @@ export const Container = styled.section`
 
 export const SectionContainer = styled.form`
   background: #fefefe;
-  width: 512px;
+  width: 100%;
+  max-width: 512px;
   border: 1px solid ${defaultTheme.color.neutrals.tempN2};
   border-radius: 16px;
   padding: 0px 24px;
@@ -150,4 +151,12 @@ export const ButtonContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+`;
+export const NameContainer = styled.div`
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;

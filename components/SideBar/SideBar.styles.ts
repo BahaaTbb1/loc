@@ -2,6 +2,9 @@ import styled, { css } from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const Container = styled.div`
+  @media (max-width: 768px) {
+    display: none;
+  }
   position: fixed;
   z-index: 11;
   top: 0px;

@@ -31,7 +31,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivi
       <StepperContainer>
         <HeaderContainer>
           <HeaderTitle>Weekly Activities</HeaderTitle>
-          <S.Flex>
+          <S.Flex alignItems="center">
             <CurrentWeek>Week {current}</CurrentWeek>
             <OverAllWeeks>of {weeks}</OverAllWeeks>
           </S.Flex>

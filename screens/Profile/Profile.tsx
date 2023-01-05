@@ -18,7 +18,8 @@ import {
   ProfileSaveButton,
   ButtonContainer,
   SaveButton,
-  CancelButton
+  CancelButton,
+  NameContainer
 } from './Profile.styles';
 
 import { useFormik } from 'formik';
@@ -212,7 +213,7 @@ const Profile = () => {
             <ProfileSaveButton type="submit">Save</ProfileSaveButton>
           </TitleSection>
           <FormContainer>
-            <S.Flex gap="16" justifyContent="space-between">
+            <NameContainer>
               <FormFieldEdit
                 variant="small"
                 label="First name"
@@ -232,7 +233,7 @@ const Profile = () => {
                 error={!!(ProfileFormik.touched.lastname && ProfileFormik.errors.lastname)}
                 message={ProfileFormik.errors.lastname}
               />
-            </S.Flex>
+            </NameContainer>
             <FormFieldEdit
               variant="big"
               label="Date"

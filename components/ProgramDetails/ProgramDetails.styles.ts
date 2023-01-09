@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const ProgramDetailsContainer = styled.div`
-  padding: 40px 0px 40px 40px;
+  padding: 40px;
 
   background: #f2f7fc;
   /* Neutral / N-2 */
@@ -10,6 +10,8 @@ export const ProgramDetailsContainer = styled.div`
   border: 1px solid #dee7ee;
   border-radius: 24px;
   display: flex;
+  align-items: center;
+  justify-content:space-between ;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -19,8 +21,11 @@ export const ProgramDetailsContainer = styled.div`
 `;
 export const DataDiv = styled.div`
   display: flex;
-  align-items: center;
-  gap: 64px;
+  align-items: baseline;
+  justify-content:center ;
+  gap: 4px;
+  padding: 13px 95px;
+
 `;
 
 export const InfoContainer = styled.div`
@@ -28,9 +33,9 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   align-items: center;
+  border-left: 1px solid #DEE7EE;
+
   @media (min-width: 769px) {
-    width: 301px;
-    border-left: 1px solid #dee7ee;
   }
 `;
 export const Completed = styled.div`
@@ -69,7 +74,6 @@ export const Program = styled.div`
     align-items: center;
   }
   gap: 8px;
-  width: 268px;
   height: 76px;
 `;
 
@@ -85,7 +89,6 @@ export const DateContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-  width: 180px;
 `;
 export const Date = styled.div`
   font-size: 14px;

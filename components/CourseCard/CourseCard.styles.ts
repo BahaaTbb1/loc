@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 import Image from 'next/image';
 
@@ -14,12 +14,25 @@ const colors = {
 export const Container = styled.div<{
   type: 'active' | 'enrolled' | 'completed';
   color: 'cyan' | 'yellow' | 'purple' | 'red' | 'green' | undefined;
+  number: number;
 }>`
   cursor: pointer;
-  z-index: 9;
   background: ${(props) => colors[`${props.color}`]};
   @media (min-width: 768px) {
-    width: ${(props) => (props.type === 'active' ? '596' : '282')}px;
+    width: ${(props) => (props.type === 'active' ? '100%' : '282px')};
+    ${(props) => {
+      if (props.number > 1) {
+        return css`
+          grid-column: auto/span calc(4 - ${props.number});
+        
+        `;
+      } else {
+        return css`
+          grid-column: auto/span 2;
+
+        `;
+      }
+    }}
   }
   @media (max-width: 768px) {
     width: 100%;
@@ -28,9 +41,12 @@ export const Container = styled.div<{
   border: 1px solid rgba(35, 35, 57, 0.16);
   height: 318px;
 `;
+
 export const Card = styled.div`
   border-radius: 24px;
   width: inherit;
+  box-sizing:border-box ;
+
   height: inherit;
   background-image: url('/assets/images/icons/common/polygon.svg');
   background-repeat: no-repeat;

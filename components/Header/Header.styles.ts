@@ -14,7 +14,6 @@ export const Wrapper = styled.div<{ fullWidth?: boolean }>`
   }
   background-color: rgba(255, 255, 255, 0.85) !important;
   z-index: 10;
-  box-shadow: 0px 0px 8px rgba(35, 35, 57, 0.06);
   backdrop-filter: blur(16px);
 `;
 export const Container = styled.div`

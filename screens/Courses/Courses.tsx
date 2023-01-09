@@ -32,7 +32,6 @@ const Courses = () => {
       <SideBar />
       <CoursesContainer>
         <MainCol>
-          {' '}
           <Section>
             <SectionTitle>Continue your journey ✨</SectionTitle>
             <CoursesWrapper>
@@ -40,6 +39,7 @@ const Courses = () => {
                 data?.getOngoingProgramsForCurrentStudent.map((course) => {
                   return (
                     <CourseCard
+                      number={2}
                       type="active"
                       id={course.id}
                       key={course.id}
@@ -61,6 +61,7 @@ const Courses = () => {
                 data?.getEnrolledProgramsForCurrentStudent.map((course) => {
                   return (
                     <CourseCard
+                      number={data.getEnrolledProgramsForCurrentStudent.length}
                       type="enrolled"
                       id={course.id}
                       key={course.id}
@@ -82,6 +83,7 @@ const Courses = () => {
                 data?.getCompletedProgramsForCurrentStudent.map((course) => {
                   return (
                     <CourseCard
+                      number={data.getCompletedProgramsForCurrentStudent.length}
                       type="completed"
                       id={course.id}
                       key={course.id}

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const ActivityContainer = styled.div`
-  width: 387px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

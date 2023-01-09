@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const ClassDetailsContainer = styled.main`
-  margin-top: calc(16px + 106px);
+  margin-top: 122px;
   display: flex;
   justify-content: center;
   @media (min-width: 768px) {
@@ -20,6 +20,7 @@ export const ProgramContainer = styled.div`
   flex-direction: column;
   gap: 32px;
   overflow: hidden;
+  width: 100% ;
   /* margin:0px 64px ; */
 `;
 
@@ -42,7 +43,6 @@ export const ParticipantsContainer = styled.div`
   border-radius: 16px;
   overflow: hidden;
   box-sizing: border-box;
-  min-width: 280px;
   /* Auto layout */
 
   display: flex;

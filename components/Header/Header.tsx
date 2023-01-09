@@ -35,16 +35,10 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
         <Title>
           {back && (
             <BackButtonContainer onClick={handleClick}>
-              <Image
-                alt="right arrow"
-                layout="fixed"
-                width={24}
-                height={24}
-                src="/assets/images/icons/common/arrow_left_black.svg"
-              />
+              <Image alt="right arrow" layout='fixed' width={24} height={24} src="/assets/images/icons/common/arrow_left_black.svg" />
             </BackButtonContainer>
           )}
-          <S.H2 style={{ color: '#232339', margin: 'auto' }}>{pageTitle}</S.H2>
+          <S.H2 style={{ color: '#232339',margin:"auto"}}>{pageTitle}</S.H2>
         </Title>
         <Tabs>
           {tabs.map(({ current, title }) => (

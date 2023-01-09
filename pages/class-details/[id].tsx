@@ -18,28 +18,6 @@ const ClassDetailsPage: NextPageWithLayout = (props) => {
 ClassDetailsPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <Head>
-        <title>Leagues of Code</title>
-      </Head>
-      <Header
-        back={true}
-        pageTitle="Hello World"
-        tabs={[
-          {
-            current: true,
-            title: 'Overview'
-          },
-          {
-            current: false,
-            title: 'Activities'
-          },
-          {
-            current: false,
-            title: 'Leaderboard'
-          }
-        ]}
-      />
-      <SideBar />
       <>{page}</>
     </>
   );

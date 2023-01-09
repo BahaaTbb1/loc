@@ -45,23 +45,20 @@ const ProgramDetails = ({
           </Date>
         </DateContainer>
       </Program>
-      <DataDiv>
         <InfoContainer>
-          <S.Flex gap="4" alignItems="baseLine">
+          <DataDiv>
             <Completed>{problemsSolved}</Completed>
             <OverAll>/ {porblems}</OverAll>
-          </S.Flex>
+          </DataDiv>
           <Div>Problems Solved</Div>
         </InfoContainer>
-
         <InfoContainer>
-          <S.Flex gap="4" alignItems="baseLine">
+          <DataDiv>
             <Completed>{activitesCompleted}</Completed>
             <OverAll>/ {activites}</OverAll>
-          </S.Flex>
+          </DataDiv>
           <Div>Activities Completed</Div>
         </InfoContainer>
-      </DataDiv>
     </ProgramDetailsContainer>
   );
 };

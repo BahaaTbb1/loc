@@ -6,7 +6,6 @@ export const Container = styled.div`
     display: none;
   }
   position: fixed;
-  z-index: 11;
   top: 0px;
   left: 0;
   /* height: 100% ; */

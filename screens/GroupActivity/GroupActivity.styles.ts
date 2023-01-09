@@ -1,33 +1,32 @@
 import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
-export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-  gap: 32px;
-`;
 export const ContentContainer = styled.div`
-  margin-left: 16px;
-  display: flex;
-  margin-top: 124px;
-
+ display: flex;
   flex-direction: column;
   align-items: center;
+  @media (min-width: 769px) {
+    margin-left: 64px;
+    margin-right: 64px;
+  }
+  margin-top: 122px;
+   
+  justify-content:center ;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  max-width: 1168px;
+  width: 100%;
+  justify-content: center;
+  gap: 32px;
+`;
+
 export const LeftSide = styled.section`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: 16px;
-
-  @media (min-width: 769px) {
-    width: calc(100vw - 560px);
-  }
-  max-width: 805px;
+  width: 100%;
 `;
 export const RightSide = styled.section`
   /* position: fixed; */
@@ -40,10 +39,10 @@ export const RightSide = styled.section`
   -ms-overflow-style: none; /* Internet Explorer 10+ */
 
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
   }
-  overflow-y: scroll !important;
 `;
 
 export const ActivityHeader = styled.div`
@@ -72,4 +71,5 @@ export const ActivityList = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 12px;
+  width: 100% ;
 `;

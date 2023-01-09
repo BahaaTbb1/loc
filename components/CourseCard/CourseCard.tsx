@@ -11,22 +11,18 @@ interface ICourseCardProps {
   color: 'cyan' | 'yellow' | 'purple' | 'red' | 'green' | undefined;
   title: string;
   name: string;
+  number: number;
 }
 
-const CourseCard: React.FC<ICourseCardProps> = ({ id, type, color, title, name }) => {
+const CourseCard: React.FC<ICourseCardProps> = ({ id, type, color, title, name , number}) => {
   const router = useRouter();
 
   return (
-    <Container onClick={() => router.push(`/class-details/${id}`)} type={type} color={color}>
+    <Container number={number} onClick={() => router.push(`/class-details/${id}`)} type={type} color={color}>
       <Card>
         <Wrapper>
           <CardHeader>
             <Name>{name}</Name>
-            <div>
-              <Info>League 01</Info>
-              <span>•</span>
-              <Info>Module 01</Info>
-            </div>
           </CardHeader>
 
           <Title>{title}</Title>

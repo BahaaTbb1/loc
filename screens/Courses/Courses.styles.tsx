@@ -4,31 +4,44 @@ import defaultTheme from 'modules/ThemeModule/themes/default.json';
 export const CoursesContainer = styled.main`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   @media (min-width: 769px) {
-    margin-left: calc(14px + 64px);
+    margin-left: 64px;
+    margin-right: 64px;
   }
-  margin-top: calc(16px + 106px);
+  margin-top: 122px;
+   
+  justify-content:center ;
+
+
 `;
 export const MainCol = styled.div`
   display: flex;
+  max-width: 1168px;
+  width: 100% ;
   flex-direction: column;
-  align-items: flex-start;
-  width: 100%;
+  align-items: center;
+
 `;
 export const Section = styled.div`
-  width: inherit;
   display: flex;
   justify-content: center;
   align-content: center;
   flex-direction: column;
-  align-content: flex-start;
-  align-items: flex-start;
-  padding: 0px 0px 32px;
+  align-content: center;
+  justify-content:center ;
   gap: 24px;
-  border-bottom: 1px solid ${defaultTheme.color.neutrals.tempN2};
   margin-bottom: 32px;
   width: 100%;
+
+  &::after{
+    content: "";
+    border-bottom: 1px solid ${defaultTheme.color.neutrals.tempN2};
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+
 `;
 
 export const SectionTitle = styled.div`
@@ -43,9 +56,16 @@ export const SectionTitle = styled.div`
 `;
 
 export const CoursesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  gap: 32px;
+ @media (min-width: 768px) {
+      display: grid;
+    gap: 32px;
+    grid-auto-rows: minmax(0,1fr);
+    grid-template-columns: repeat(4,minmax(200px,1fr));
+    grid-template-rows: repeat(1,min-content);
+    }
+  @media (max-width: 769px) {
+    display:flex ;
+    flex-wrap: wrap ;
+    gap: 32px;
+  }
 `;

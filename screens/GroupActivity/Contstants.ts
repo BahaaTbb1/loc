@@ -8,19 +8,23 @@ export const GET_ACTIVITES = gql`
       description
 
       activities {
+        activity_type_id
         id
         title
-        activity_type_id
-        link
+        description
+        speaker
+        start_datetime
+        problems_count
         problems {
           id
           title
+          description
+          type_id
+          content
         }
         resources {
           id
           name
-          description
-          link
         }
       }
     }
@@ -30,31 +34,74 @@ export const GET_ACTIVITES = gql`
 export interface IActivites {
   getLecturesInProgramForCurrentStudent: [ActivitesData];
 }
-
+export interface IActivity {
+  activity_type_id: number;
+  id: number;
+  title: string;
+  start_datetime: Date;
+  description: string;
+  speaker: string;
+  problems_count: number;
+  problems: [IProblem];
+  resources: [{ id: number; name: string; link: string }];
+}
 export interface ActivitesData {
   id: number;
   name: string;
   description: string;
-  activities: [
-    {
-      id: number;
-      title: string;
-      activity_type_id: number;
-      link: string;
-      problems: [
-        {
-          id: number;
-          title: string;
-        }
-      ];
-      resources: [
-        {
-          id: number;
-          name: string;
-          description: string;
-          link: string;
-        }
-      ];
-    }
-  ];
+  activities: [Activity];
+}
+export interface IProblem {
+  type_id: number;
+  __typename: string;
+  id: number;
+  title: string;
+  description: string;
+  content: ICQContent | IMCContent | IFRContent;
+}
+
+export interface IFRContent {
+  question: string;
+}
+export interface ICQContent {
+  coding_judge_id: number;
+  time_limit: number;
+  memory_limit: number;
+  sample_tests: {
+    input: string;
+    output: string;
+  }[];
+  test_cases: {
+    input: string;
+    output: string;
+  }[];
+}
+export interface IMCContent {
+  question: string;
+  answers: string[];
+  correct_answer: boolean[];
+}
+export interface IFRProblemSubmissions {
+  getSubmissionsFromProblemForCurrentStudent: {
+    id: string;
+    content: {
+      submitted_answer: string;
+      language: string;
+    };
+    verdict: string;
+    status: string;
+    created_at: string;
+  }[];
+}
+export interface IMCProblemSubmissions {
+  getSubmissionsFromProblemForCurrentStudent: {
+    id: string;
+    content: {
+      submitted_answer: boolean[];
+      language: null;
+    };
+    verdict: { id: string; name: string };
+    status: { id: string; name: string };
+    created_at: string;
+  }[];
 }

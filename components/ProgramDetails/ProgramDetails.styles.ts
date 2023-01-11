@@ -11,7 +11,7 @@ export const ProgramDetailsContainer = styled.div`
   border-radius: 24px;
   display: flex;
   align-items: center;
-  justify-content:space-between ;
+  justify-content: space-between;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -22,10 +22,9 @@ export const ProgramDetailsContainer = styled.div`
 export const DataDiv = styled.div`
   display: flex;
   align-items: baseline;
-  justify-content:center ;
+  justify-content: center;
   gap: 4px;
   padding: 13px 95px;
-
 `;
 
 export const InfoContainer = styled.div`
@@ -33,7 +32,7 @@ export const InfoContainer = styled.div`
   flex-direction: column;
   gap: 8px;
   align-items: center;
-  border-left: 1px solid #DEE7EE;
+  border-left: 1px solid #dee7ee;
 
   @media (min-width: 769px) {
   }

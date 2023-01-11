@@ -14,7 +14,7 @@ interface ICourseCardProps {
   number: number;
 }
 
-const CourseCard: React.FC<ICourseCardProps> = ({ id, type, color, title, name , number}) => {
+const CourseCard: React.FC<ICourseCardProps> = ({ id, type, color, title, name, number }) => {
   const router = useRouter();
 
   return (

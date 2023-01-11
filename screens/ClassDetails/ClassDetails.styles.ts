@@ -20,7 +20,7 @@ export const ProgramContainer = styled.div`
   flex-direction: column;
   gap: 32px;
   overflow: hidden;
-  width: 100% ;
+  width: 100%;
   /* margin:0px 64px ; */
 `;
 

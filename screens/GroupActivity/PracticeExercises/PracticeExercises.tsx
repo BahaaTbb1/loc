@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { IStudentActivity } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 import { config } from './config';
+import { parseISO, format } from 'date-fns';
 import {
   ActivityId,
   Activity,
@@ -18,10 +19,11 @@ import {
   HeaderTime,
   ButtonsContainer
 } from './PracticeExercises.Style';
+import { IActivity } from '../Contstants';
 
 interface IPracticeExercisesProps {
   Aid?: number;
-  data: IStudentActivity | undefined;
+  data: IActivity | undefined;
 }
 
 const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
@@ -30,19 +32,20 @@ const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
   const Navigate = () => {
     return Aid ? router.push(`/group-challenge/${Aid}`) : router.push(`/group-challenge/1`);
   };
-
   return (
     <>
       <Container>
         <ActivityDetails>
           <span>Week 2</span>
-          <div>Practice Exercises</div>
+          <div>{data?.title}</div>
         </ActivityDetails>
         <ActivitiesContainer>
           <ActivityTableHeader>
             <HeaderDateContainer>
               <img width={20} height={20} src="/assets/images/icons/common/clook.svg" />
-              <HEaderDate>{data?.getActivityForCurrentStudent.start_datetime}</HEaderDate>
+              <HEaderDate>
+                {data?.start_datetime && format(parseISO(data.start_datetime), "EEEE MMM d '@' HH:mm 'CET'")}
+              </HEaderDate>
             </HeaderDateContainer>
             <HeaderContent>
               <HeaderTime>
@@ -56,13 +59,13 @@ const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
             </HeaderContent>
           </ActivityTableHeader>
           <Activities>
-            {data?.getActivityForCurrentStudent.problems.map(({ id, title }) => (
+            {data?.problems.map(({ id, title }) => (
               <Activity key={id}>
                 <ActivityTitle>
                   <ActivityId>{id}. </ActivityId>
                   <span>{title}</span>
                 </ActivityTitle>
-                <span>0/{data?.getActivityForCurrentStudent.problems_count}</span>
+                <span>0/{data?.problems_count}</span>
               </Activity>
             ))}
           </Activities>

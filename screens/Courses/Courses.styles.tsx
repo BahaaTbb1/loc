@@ -10,18 +10,15 @@ export const CoursesContainer = styled.main`
     margin-right: 64px;
   }
   margin-top: 122px;
-   
-  justify-content:center ;
 
-
+  justify-content: center;
 `;
 export const MainCol = styled.div`
   display: flex;
   max-width: 1168px;
-  width: 100% ;
+  width: 100%;
   flex-direction: column;
   align-items: center;
-
 `;
 export const Section = styled.div`
   display: flex;
@@ -29,19 +26,18 @@ export const Section = styled.div`
   align-content: center;
   flex-direction: column;
   align-content: center;
-  justify-content:center ;
+  justify-content: center;
   gap: 24px;
   margin-bottom: 32px;
   width: 100%;
 
-  &::after{
-    content: "";
+  &::after {
+    content: '';
     border-bottom: 1px solid ${defaultTheme.color.neutrals.tempN2};
     width: 100%;
     height: 100%;
     box-sizing: border-box;
   }
-
 `;
 
 export const SectionTitle = styled.div`
@@ -56,16 +52,16 @@ export const SectionTitle = styled.div`
 `;
 
 export const CoursesWrapper = styled.div`
- @media (min-width: 768px) {
-      display: grid;
+  @media (min-width: 768px) {
+    display: grid;
     gap: 32px;
-    grid-auto-rows: minmax(0,1fr);
-    grid-template-columns: repeat(4,minmax(200px,1fr));
-    grid-template-rows: repeat(1,min-content);
-    }
+    grid-auto-rows: minmax(0, 1fr);
+    grid-template-columns: repeat(4, minmax(200px, 1fr));
+    grid-template-rows: repeat(1, min-content);
+  }
   @media (max-width: 769px) {
-    display:flex ;
-    flex-wrap: wrap ;
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
   }
 `;

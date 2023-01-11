@@ -1,1 +1,1 @@
-export { default } from './GroupChallenge';
+export { default } from './ParentGroupChallenge';

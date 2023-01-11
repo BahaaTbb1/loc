@@ -9,14 +9,16 @@ interface IGroupActivityTabs {
         {
           id: number;
           name: string;
-          description: string;
           link: string;
         }
       ]
     | undefined;
+
+  description: string | undefined;
 }
-const GroupActivityTabs = ({ resources }: IGroupActivityTabs) => {
-  const [activeTab, setActiveTab] = useState('tab2');
+const GroupActivityTabs = ({ resources, description }: IGroupActivityTabs) => {
+  const [activeTab, setActiveTab] = useState('tab1');
+
   return (
     <Tabs>
       <TabList className="nav">
@@ -26,7 +28,7 @@ const GroupActivityTabs = ({ resources }: IGroupActivityTabs) => {
 
       <TabPanel>
         <TabContent id="tab1" activeTab={activeTab}>
-          <OverviewDescription>{resources ? resources[0]?.description : 'No Data Povided'}</OverviewDescription>
+          <OverviewDescription>{!!description ? description : 'No description was provided'}</OverviewDescription>
         </TabContent>
         <TabContent id="tab2" activeTab={activeTab}>
           <S.Flex gap="16" style={{ flexWrap: 'wrap' }}>

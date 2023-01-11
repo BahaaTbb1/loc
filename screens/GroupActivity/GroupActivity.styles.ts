@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const ContentContainer = styled.div`
- display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   @media (min-width: 769px) {
@@ -10,8 +10,8 @@ export const ContentContainer = styled.div`
     margin-right: 64px;
   }
   margin-top: 122px;
-   
-  justify-content:center ;
+
+  justify-content: center;
 `;
 
 export const Container = styled.div`
@@ -31,6 +31,7 @@ export const LeftSide = styled.section`
 export const RightSide = styled.section`
   /* position: fixed; */
   /* right: 119px; */
+
   display: flex;
   flex-direction: column;
   scroll-snap-type: y mandatory;
@@ -71,5 +72,5 @@ export const ActivityList = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 12px;
-  width: 100% ;
+  width: 100%;
 `;

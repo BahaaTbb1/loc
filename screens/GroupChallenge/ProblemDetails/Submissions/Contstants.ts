@@ -44,7 +44,7 @@ export interface IStudentActivity {
   getActivityForCurrentStudent: {
     id: string;
     title: string;
-    start_datetime: string;
+    start_datetime: Date;
     description: string;
     speaker: string;
     problems_count: number;

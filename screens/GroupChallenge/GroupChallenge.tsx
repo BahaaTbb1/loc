@@ -5,7 +5,6 @@ import ProblemDetails from './ProblemDetails';
 import MultiChoices from './MultiChoices';
 import { useQuery } from '@apollo/client';
 import {
-  GET_STUDENT_ACTIVITY,
   GIT_PROBLEMS_SUBMISSIONS,
   IMCProblemSubmissions,
   IProblem,
@@ -13,18 +12,11 @@ import {
 } from './ProblemDetails/Submissions/Contstants';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
-
-const GroupChallenge = () => {
+const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
   const [curProblemColore, setCurProblemColore] = useState(0);
+  const { data: session } = useSession();
   const router = useRouter();
   const { id: queryId } = router.query;
-  const { data: session } = useSession();
-
-  const { data } = useQuery<IStudentActivity>(GET_STUDENT_ACTIVITY, {
-    variables: {
-      id: Number(queryId)
-    }
-  });
   const [problemId, setProblemId] = useState(data?.getActivityForCurrentStudent.problems[0]?.id);
   const [problemData, setProblemData] = useState<IProblem | undefined>(data?.getActivityForCurrentStudent?.problems[0]);
   const { data: submissionData, refetch } = useQuery<IMCProblemSubmissions>(GIT_PROBLEMS_SUBMISSIONS, {
@@ -45,6 +37,7 @@ const GroupChallenge = () => {
     // eslint-disable-next-line no-console
   }, [data?.getActivityForCurrentStudent.problems, problemId]);
   const problemsIds = data?.getActivityForCurrentStudent.problems.map((t) => t.id);
+
   return (
     <>
       <GroupChallengeBar

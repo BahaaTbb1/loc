@@ -24,12 +24,10 @@ export const Container = styled.div<{
       if (props.number > 1) {
         return css`
           grid-column: auto/span calc(4 - ${props.number});
-        
         `;
       } else {
         return css`
           grid-column: auto/span 2;
-
         `;
       }
     }}
@@ -45,7 +43,7 @@ export const Container = styled.div<{
 export const Card = styled.div`
   border-radius: 24px;
   width: inherit;
-  box-sizing:border-box ;
+  box-sizing: border-box;
 
   height: inherit;
   background-image: url('/assets/images/icons/common/polygon.svg');

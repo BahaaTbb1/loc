@@ -7,7 +7,7 @@ export const ActivityTypeRadioContainer = styled.div<{ checked: boolean }>`
   gap: 25px;
   padding: 20px;
   border-radius: 12px;
-  width: 100% ;
+  width: 100%;
   box-sizing: border-box;
   ${(props) =>
     props.checked &&

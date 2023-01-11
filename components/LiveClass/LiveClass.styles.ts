@@ -9,7 +9,7 @@ export const LiveClassWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100% ;
+  width: 100%;
 `;
 
 export const LiveClassContainer = styled.div`

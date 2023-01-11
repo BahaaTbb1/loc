@@ -45,20 +45,20 @@ const ProgramDetails = ({
           </Date>
         </DateContainer>
       </Program>
-        <InfoContainer>
-          <DataDiv>
-            <Completed>{problemsSolved}</Completed>
-            <OverAll>/ {porblems}</OverAll>
-          </DataDiv>
-          <Div>Problems Solved</Div>
-        </InfoContainer>
-        <InfoContainer>
-          <DataDiv>
-            <Completed>{activitesCompleted}</Completed>
-            <OverAll>/ {activites}</OverAll>
-          </DataDiv>
-          <Div>Activities Completed</Div>
-        </InfoContainer>
+      <InfoContainer>
+        <DataDiv>
+          <Completed>{problemsSolved}</Completed>
+          <OverAll>/ {porblems}</OverAll>
+        </DataDiv>
+        <Div>Problems Solved</Div>
+      </InfoContainer>
+      <InfoContainer>
+        <DataDiv>
+          <Completed>{activitesCompleted}</Completed>
+          <OverAll>/ {activites}</OverAll>
+        </DataDiv>
+        <Div>Activities Completed</Div>
+      </InfoContainer>
     </ProgramDetailsContainer>
   );
 };

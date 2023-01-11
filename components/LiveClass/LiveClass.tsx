@@ -13,20 +13,24 @@ import {
 } from './LiveClass.styles';
 import Image from 'next/image';
 import { ActivityDetails } from 'screens/GroupActivity/PracticeExercises/PracticeExercises.Style';
+import { IActivity } from 'screens/GroupActivity/Contstants';
+import { format, parseISO } from 'date-fns';
 
-const LiveClass = () => {
+interface ILiveClassProps {
+  data: IActivity | undefined;
+}
+const LiveClass: React.FC<ILiveClassProps> = ({ data }) => {
   return (
     <>
       <ActivityDetails>
         <span>Week 2</span>
-        <div>Practice Exercises</div>
+        <div>{data?.title}</div>
       </ActivityDetails>
       <LiveClassWrapper>
-
         <LiveClassContainer>
           <TutorImage alt="tutor" src={'/assets/images/user/tutor.png'} width="128" height="128" />
           <S.Flex alignItems="center" gap="8" direction="column">
-            <TutorName>Jonathan Harel</TutorName>
+            <TutorName>{data?.speaker}</TutorName>
             <TutorTitle>Software Engineer at Zeptolab</TutorTitle>
           </S.Flex>
         </LiveClassContainer>
@@ -34,7 +38,10 @@ const LiveClass = () => {
           <LiveClassFooter>
             <S.Flex alignItems="center" gap="8">
               <Image alt="clock" src="/assets/images/icons/common/clock.svg" width="24" height="24" />
-              <LiveClassDate> Sunday Sep 20 @ 10:00 CET </LiveClassDate>
+              <LiveClassDate>
+                {' '}
+                {data?.start_datetime && format(parseISO(data.start_datetime), "EEEE MMM d '@' HH:mm 'CET'")}
+              </LiveClassDate>
             </S.Flex>
             <JoinClassButton>Join Class</JoinClassButton>
           </LiveClassFooter>

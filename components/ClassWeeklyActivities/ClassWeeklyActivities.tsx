@@ -75,7 +75,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivi
                 id={activity.id}
                 checked={checked === activity.id}
                 title={activity.title}
-                date={format(parseISO(activity.start_datetime), "EEEE LLL d @ H:m 'CET'")}
+                date={activity.start_datetime && format(parseISO(activity.start_datetime), "EEEE LLL d @ H:m 'CET'")}
                 setCurrent={setChecked}
               />
             );

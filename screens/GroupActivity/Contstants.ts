@@ -38,7 +38,7 @@ export interface IActivity {
   activity_type_id: number;
   id: number;
   title: string;
-  start_datetime: Date;
+  start_datetime: string;
   description: string;
   speaker: string;
   problems_count: number;
@@ -49,7 +49,7 @@ export interface ActivitesData {
   id: number;
   name: string;
   description: string;
-  activities: [Activity];
+  activities: [IActivity];
 }
 export interface IProblem {
   type_id: number;

@@ -39,7 +39,6 @@ const LiveClass: React.FC<ILiveClassProps> = ({ data }) => {
             <S.Flex alignItems="center" gap="8">
               <Image alt="clock" src="/assets/images/icons/common/clock.svg" width="24" height="24" />
               <LiveClassDate>
-                {' '}
                 {data?.start_datetime && format(parseISO(data.start_datetime), "EEEE MMM d '@' HH:mm 'CET'")}
               </LiveClassDate>
             </S.Flex>

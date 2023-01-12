@@ -13,8 +13,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 38px 0px 38px 24px;
-  gap: 138px;
+  padding: 32px 0px 38px 24px;
+  gap: 140.5px;
   height: 100%;
   background-color: ${defaultTheme.color.neutrals.white};
 `;
@@ -27,9 +27,8 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   justify-items: center;
   align-items: center;
-  width: 64px;
   cursor: pointer;
-  height: 64px;
+  padding: 13px 11px;
 `;
 
 export const Page = styled.div<IPage>`

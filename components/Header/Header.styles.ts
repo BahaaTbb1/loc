@@ -15,6 +15,7 @@ export const Wrapper = styled.div<{ fullWidth?: boolean }>`
   background-color: rgba(255, 255, 255, 0.85) !important;
   z-index: 10;
   backdrop-filter: blur(16px);
+  max-height: 104px;
 `;
 export const Container = styled.div`
   @media (min-width: 768px) {

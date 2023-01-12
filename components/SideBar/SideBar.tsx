@@ -3,14 +3,15 @@ import { S } from 'globalstyles';
 import { ButtonsContainer, Container, Page } from './SideBar.styles';
 import { useRouter } from 'next/router';
 import Link from 'utils/ActiveLink';
+import Image from 'next/image';
 
 const Sidebar = () => {
   const router = useRouter();
 
   return (
     <Container>
-      <ButtonsContainer>
-        <img src="/logo.svg" width="42" height="29" loading="lazy" />
+      <ButtonsContainer onClick={() => router.push('/')}>
+        <Image src="/logo.svg" width={42} height={29} alt="League of codes Logo" layout="fixed" />
       </ButtonsContainer>
 
       <S.Flex direction="column" justifyContent="center" alignItems="center" gap="12">

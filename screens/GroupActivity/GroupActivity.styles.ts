@@ -12,6 +12,7 @@ export const ContentContainer = styled.div`
   margin-top: 122px;
 
   justify-content: center;
+  height: 100%;
 `;
 
 export const Container = styled.div`

@@ -2,11 +2,13 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const CodeEditorWrapper = styled.div`
+  position: relative;
   flex: 1;
   .margin-view-overlays {
     background-color: #061b32 !important;
     margin: 0px !important;
     width: 40px !important;
+    height: 100%;
   }
   .line-numbers {
     left: 0px;
@@ -15,16 +17,17 @@ export const CodeEditorWrapper = styled.div`
     align-items: flex-end;
     top: 24px;
   }
-  .monaco-editor {
-    overflow: hidden;
-  }
   .editor-scrollable {
     top: 24px;
   }
+  height: calc(100vh - 65px);
 `;
 
 export const CodeEditorContainer = styled.div`
-  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Menu = styled.img`
@@ -40,15 +43,16 @@ export const Pipe = styled.div`
 `;
 export const ResultBar = styled.section`
   position: relative;
-  width: 100%;
+  top: 0;
   background-color: #041628;
   border-top: 1px solid #000000;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  padding: 14px 24px;
 `;
 export const ResultContainer = styled.div`
-  padding: 14px 24px;
   display: flex;
+  width: inherit;
   align-items: center;
   justify-content: space-between;
 `;

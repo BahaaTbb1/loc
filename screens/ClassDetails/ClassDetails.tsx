@@ -1,6 +1,6 @@
 import ClassWeeklyActivities from 'components/ClassWeeklyActivities';
 import { Header, ProgramDetails, TeacherProfile } from 'components';
-import React from 'react';
+import React, { useState } from 'react';
 import { ProgramContainer } from './ClassDetails.styles';
 import ParticipantsC from './Participants';
 import { S } from 'globalstyles/index';
@@ -15,12 +15,27 @@ const ClassDetails = () => {
   const router = useRouter();
   const { id } = router.query;
 
+  const currWeek = (endDates: string[]) => {
+    let weekIndex = endDates.length;
+    endDates.map((endDate, index) => {
+      const enDate = new Date(endDate);
+      const curDate = new Date();
+      if (Number(enDate.getTime()) > Number(curDate.getTime())) {
+        if (weekIndex == endDates.length) weekIndex = index + 1;
+      }
+    });
+
+    return weekIndex;
+  };
   const { data } = useQuery<IClassDetails>(GET_CLASS_DETAILS, {
     variables: {
       moduleId: 1,
       programId: id
     }
   });
+
+  const [current, setCurrent] = useState(0);
+
 
   return (
     <>
@@ -62,9 +77,18 @@ const ClassDetails = () => {
               <div>No Data Provided</div>
             )}
             <ClassWeeklyActivities
-              activites={data?.getCurrentModuleForCurrentStudent.lectures[0].activities}
-              current={4}
-              weeks={12}
+              activites={
+                data?.getCurrentModuleForCurrentStudent.lectures[
+                  currWeek(
+                    data?.getCurrentModuleForCurrentStudent.lectures.map(
+                      (lect) => lect.activities[lect.activities.length - 1].end_datetime
+                    ) || ['']
+                  ) - 1
+                ].activities
+              }
+              current={current}
+              setCurrent={setCurrent}
+              weeks={data?.getCurrentModuleForCurrentStudent?.lectures?.length || 1}
             />
           </ProgramContainer>
           <S.Flex direction="column" gap="32">
@@ -72,6 +96,7 @@ const ClassDetails = () => {
               name={`${data?.getCurrentModuleForCurrentStudent.teacher?.user?.firstname} ${data?.getCurrentModuleForCurrentStudent.teacher?.user?.lastname}`}
               profession={data?.getCurrentModuleForCurrentStudent.teacher?.title}
               mail={data?.getCurrentModuleForCurrentStudent.teacher?.user?.email}
+              link={data?.getCurrentModuleForCurrentStudent.teacher?.calendly_link}
             />
             <ParticipantsC participants={data?.getCurrentModuleForCurrentStudent.students} />
           </S.Flex>

@@ -9,6 +9,7 @@ const AppContainer = styled.div`
 `;
 const AppContent = styled.div`
   margin-left: 274px;
+  overflow: hidden !important ;
 `;
 
 export { AppContainer, AppContent };

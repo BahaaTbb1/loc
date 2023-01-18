@@ -36,5 +36,5 @@ export const Text = styled.div`
   right: 0;
   top: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 3;
 `;

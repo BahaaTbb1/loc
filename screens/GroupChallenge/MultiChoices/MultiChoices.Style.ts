@@ -2,19 +2,31 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: space-between;
-  width: 100%;
   background-color: #08223e;
   border: 1px solid #dee7ee;
   border-radius: 12px;
+  height: calc(100vh - 108px);
+  overflow: hidden !important;
 `;
 const Container = styled.div`
-  padding: 96px 81px 196px 96px;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 `;
 const ProblemContainer = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 52px;
+  width: 100%;
+  padding: 96px !important ;
 `;
 const ProblemText = styled.div`
   display: flex;
@@ -45,6 +57,7 @@ const ChoicesContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  width: 100%;
 `;
 const ChoiceWraaper = styled.div<{ IsSelected: boolean }>`
   cursor: pointer;
@@ -56,7 +69,7 @@ const ChoiceWraaper = styled.div<{ IsSelected: boolean }>`
   align-items: center;
   padding: 0px 24px;
 
-  width: 591px;
+  width: 100%;
   height: 72px;
   border: 1px solid #595a6c;
 
@@ -83,13 +96,15 @@ const ChoiceContent = styled.div`
   justify-items: flex-start;
   align-items: center;
   gap: 19px;
+  width: 100%;
 `;
 const ButtonContainer = styled.div`
   background-color: #041628;
   display: flex;
+  width: 100%;
+  align-self: flex-start;
   flex-direction: row;
   justify-content: flex-end;
-  padding: 24px;
   border-end-end-radius: 12px;
   border-bottom-left-radius: 12px;
 `;

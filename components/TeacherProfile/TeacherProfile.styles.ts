@@ -44,15 +44,17 @@ export const TeacherProfession = styled.div`
   color: #595a6c;
 `;
 
-export const BookingButton = styled.button`
+export const BookingButton = styled.a`
   outline: none;
+  padding: 0;
+  margin: 0;
   border: none;
+  text-decoration: none;
 
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 13px 24px;
   gap: 10px;
 
   width: 100%;

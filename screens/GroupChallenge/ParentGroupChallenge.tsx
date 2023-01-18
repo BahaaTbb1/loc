@@ -15,7 +15,11 @@ const ParentGroupChallenge = () => {
 
   if (loading) return <>loading</>;
 
-  return <GroupChallenge data={data} />;
+  return (
+    <div style={{ overflow: 'hidden !important' }}>
+      <GroupChallenge data={data} />
+    </div>
+  );
 };
 
 export default ParentGroupChallenge;

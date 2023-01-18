@@ -13,5 +13,5 @@ export const generateUEID = () => {
 };
 
 export const ImageLoader = ({ src, width, quality }: ImageLoaderProps) => {
-  return `http://95.217.203.101:8000${src}?w=${width}&q=${quality || 75}`;
+  return `http://95.217.203.101:8000${src}?w=${width}`;
 };

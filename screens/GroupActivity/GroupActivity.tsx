@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import {
   ActivityHeader,
@@ -27,7 +27,9 @@ const GroupActivity = () => {
     variables: { programId: queryId }
   });
   const [open, setOpen] = useState(data?.getLecturesInProgramForCurrentStudent[0].id);
-  const [checked, setChecked] = useState<number | undefined>();
+  const [checked, setChecked] = useState<number | undefined>(
+    data?.getLecturesInProgramForCurrentStudent[0].activities[0].id
+  );
   const [type, setType] = useState(data?.getLecturesInProgramForCurrentStudent[0].activities[0].activity_type_id);
 
   const [activity, setActivity] = useState<IActivity | undefined>(
@@ -46,7 +48,20 @@ const GroupActivity = () => {
     },
     [data]
   );
+  const dateSplit = (endDates: string) => {
+    const enDate = new Date(endDates);
+    const curDate = new Date();
 
+    return Number(enDate.getTime()) < Number(curDate.getTime());
+  };
+  const progressCalc = (endDates: string[]) => {
+    const total = endDates.length;
+    let count = 0;
+    endDates.map((e) => {
+      if (dateSplit(e)) count += 1;
+    });
+    return Number(((count * 100) / total).toFixed(0));
+  };
   return (
     <>
       <Head>
@@ -92,19 +107,19 @@ const GroupActivity = () => {
                 />
               </CurrentActivity>
             </ActivityHeader>
-            <div style={{ overflow: 'scroll', height: '800px', width: '387px' }}>
+            <div style={{ overflowY: 'auto', overflowX: 'hidden', maxHeight: '800px', width: '387px' }}>
               {data?.getLecturesInProgramForCurrentStudent.map(({ name, activities, id }, index) => (
                 <Activity
                   key={index}
                   id={id}
                   title={name}
                   toggle={setOpen}
-                  progress={index}
+                  progress={progressCalc(activities.map((t) => t.end_datetime))}
                   open={open === id}
                   week={id}
                 >
                   <ActivityList>
-                    {activities.map(({ id: activityId, title, activity_type_id }) => (
+                    {activities.map(({ id: activityId, title, activity_type_id, end_datetime }) => (
                       <ActivityTypeRadio
                         key={activityId}
                         classId={id}
@@ -113,6 +128,7 @@ const GroupActivity = () => {
                         type={activity_type_id}
                         setCurrent={handleCurrent}
                         checked={checked === activityId}
+                        done={dateSplit(end_datetime)}
                       />
                     ))}
                   </ActivityList>

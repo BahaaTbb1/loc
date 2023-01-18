@@ -16,12 +16,15 @@ export const GET_CLASS_DETAILS = gql`
 
     getCurrentModuleForCurrentStudent(programId: $programId) {
       teacher {
+        calendly_link
         title
         user {
           firstname
           lastname
           email
         }
+        photo
+        calendly_link
       }
       lectures {
         id
@@ -75,6 +78,8 @@ interface ITeacher {
     lastname: string;
     email: string;
   };
+  photo: string;
+  calendly_link: string;
 }
 interface ILecture {
   id: string;

@@ -1,9 +1,7 @@
 import { HttpLink } from '@apollo/client';
-import { Header, SideBar } from 'components';
 import { initializeApollo, addApolloState } from 'lib/apolloClient';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
-import Head from 'next/head';
 import React, { ReactElement } from 'react';
 import ClassDetails from 'screens/ClassDetails';
 import { GET_CLASS_DETAILS } from 'screens/ClassDetails/Constants';

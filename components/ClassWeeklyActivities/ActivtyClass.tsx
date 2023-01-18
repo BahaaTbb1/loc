@@ -17,16 +17,17 @@ export interface IActivityTypeRadioProps {
   title: string;
   date: string;
   setCurrent: (_id: string) => void;
+  done: boolean;
 }
 
-const ActivityClass = ({ id, checked, title, setCurrent, date }: IActivityTypeRadioProps) => {
+const ActivityClass = ({ id, checked, title, setCurrent, date, done }: IActivityTypeRadioProps) => {
   const router = useRouter();
   const { id: queryId } = router.query;
 
   return (
     <ActivityTypeRadioContainer checked={checked}>
       <ActivityTypeRadioWrapper onClick={() => setCurrent(id)}>
-        {checked ? (
+        {done ? (
           <Image
             src="/assets/images/icons/common/filled-circle.svg"
             layout="fixed"

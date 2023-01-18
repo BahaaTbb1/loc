@@ -81,36 +81,35 @@ const MultiChoices = ({
       title: string;
     }
   ) => {
-    const temp = choicesRes;
-    await setChoicesRes([]);
+    const temp = [...choicesRes];
     temp[id] = { selected: !t.selected, title: t.title };
-    await setChoicesRes(temp);
+    setChoicesRes(temp);
   };
   useEffect(() => {
     setChoicesRes(content.answers.map((t) => ({ selected: false, title: t })));
   }, [problemId]);
 
   return (
-    <>
-      <Wrapper>
-        <Container>
-          <ProblemContainer>
-            <ProblemText>
-              <ProblemTitle>{content.question}</ProblemTitle>
-              <ProblemSubTitle>Select multiple options from the list.</ProblemSubTitle>
-            </ProblemText>
-            <ChoicesContainer>
-              {choicesRes.map((t, id) => (
-                <Choice text={t.title} key={id} isSelected={t.selected} onClick={() => onClick(id, t)} />
-              ))}
-            </ChoicesContainer>
-          </ProblemContainer>
-        </Container>
-        <ButtonContainer>
+    <Wrapper>
+      <Container>
+        <ProblemContainer>
+          <ProblemText>
+            <ProblemTitle>{content.question}</ProblemTitle>
+            <ProblemSubTitle>Select multiple options from the list.</ProblemSubTitle>
+          </ProblemText>
+          <ChoicesContainer>
+            {choicesRes.map((t, id) => (
+              <Choice text={t.title} key={id} isSelected={t.selected} onClick={() => onClick(id, t)} />
+            ))}
+          </ChoicesContainer>
+        </ProblemContainer>
+      </Container>
+      <ButtonContainer>
+        <div style={{ padding: '24px' }}>
           <Button outline={value} component={value ? 'Test Code' : 'Submit attempt'} onClick={onSubmit} />
-        </ButtonContainer>
-      </Wrapper>
-    </>
+        </div>
+      </ButtonContainer>
+    </Wrapper>
   );
 };
 

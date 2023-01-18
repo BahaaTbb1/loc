@@ -7,7 +7,7 @@ export const TabList = styled.ul`
 `;
 
 export const TabPanel = styled.div`
-  padding: 40px 0px;
+  padding: 40px 0px 0px 0px;
 `;
 export const OverviewDescription = styled.div`
   font-weight: 400;

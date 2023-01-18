@@ -28,7 +28,6 @@ interface IPracticeExercisesProps {
 
 const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
   const router = useRouter();
-
   const Navigate = () => {
     return Aid ? router.push(`/group-challenge/${Aid}`) : router.push(`/group-challenge/1`);
   };

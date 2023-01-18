@@ -3,7 +3,7 @@ import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const SubmissionBar = styled.div`
   position: relative;
-  bottom: 64px;
+  bottom: 0;
   width: 100%;
   background-color: #041628;
   border-top: 1px solid #000000;
@@ -20,7 +20,6 @@ export const SubmissionContainer = styled.div`
 export const Pipe = styled.div`
   width: 32px;
   height: 0px;
-
   border: 1px solid ${defaultTheme.color.neutrals.tempN4};
   transform: rotate(90deg);
 `;

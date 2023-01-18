@@ -95,7 +95,6 @@ const EditorSubmissionBar = memo(({ setData, setLanguage, activityId, problemId,
             <Switch checked={value} onChange={() => setValue(!value)} />
           </S.Flex>
         </S.Flex>
-
         <Button outline={value} component={value ? 'Test Code' : 'Submit attempt'} onClick={showToast} />
       </SubmissionContainer>
     </SubmissionBar>

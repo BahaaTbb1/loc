@@ -12,7 +12,7 @@ const SubmissionTitle = styled.div`
 
 const SubmissionTable = styled.div`
   table {
-    margin-left: 12px;
+    width: 100%;
     border-collapse: collapse;
     tbody {
       tr {
@@ -28,7 +28,12 @@ const SubmissionTable = styled.div`
   }
 `;
 
-const SubmissionContainer = styled.div``;
+const SubmissionContainer = styled.div`
+  max-height: 200px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
 
 const IdRow = styled.td`
   font-family: 'Inter';
@@ -40,6 +45,7 @@ const IdRow = styled.td`
 `;
 
 const StatusRow = styled.td`
+  flex: 1;
   span {
     font-family: 'Inter';
     font-style: normal;

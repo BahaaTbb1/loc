@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CodeEditor, GroupChallengeBar, ProblemsBar } from 'components';
-import { GroupChallengeContainer } from './GroupChallenge.styles';
+import { GroupChallengeContainer, ProblemContentContainer } from './GroupChallenge.styles';
 import ProblemDetails from './ProblemDetails';
 import MultiChoices from './MultiChoices';
 import { useQuery } from '@apollo/client';
@@ -11,12 +11,10 @@ import {
   IStudentActivity
 } from './ProblemDetails/Submissions/Contstants';
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+
 const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
   const [curProblemColore, setCurProblemColore] = useState(0);
   const { data: session } = useSession();
-  const router = useRouter();
-  const { id: queryId } = router.query;
   const [problemId, setProblemId] = useState(data?.getActivityForCurrentStudent.problems[0]?.id);
   const [problemData, setProblemData] = useState<IProblem | undefined>(data?.getActivityForCurrentStudent?.problems[0]);
   const { data: submissionData, refetch } = useQuery<IMCProblemSubmissions>(GIT_PROBLEMS_SUBMISSIONS, {
@@ -71,26 +69,28 @@ const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
           description={String(problemData?.description)}
           problemType={Number(problemData?.type_id)}
         />
-        {problemData?.type_id == 5 && (
-          <CodeEditor
-            refetch={refetch}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            content={problemData.content}
-            activityId={Number(data?.getActivityForCurrentStudent.id)}
-            problemId={Number(problemData?.id)}
-          />
-        )}
-        {problemData?.type_id == 1 && (
-          <MultiChoices
-            refetch={refetch}
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            content={problemData.content}
-            activityId={Number(data?.getActivityForCurrentStudent.id)}
-            problemId={Number(problemData?.id)}
-          />
-        )}
+        <ProblemContentContainer>
+          {(problemData?.type_id == 5 || problemData?.type_id == 3) && (
+            <CodeEditor
+              refetch={refetch}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              content={problemData.content}
+              activityId={Number(data?.getActivityForCurrentStudent.id)}
+              problemId={Number(problemData?.id)}
+            />
+          )}
+          {problemData?.type_id == 1 && (
+            <MultiChoices
+              refetch={refetch}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              content={problemData.content}
+              activityId={Number(data?.getActivityForCurrentStudent.id)}
+              problemId={Number(problemData?.id)}
+            />
+          )}
+        </ProblemContentContainer>
       </GroupChallengeContainer>
     </>
   );

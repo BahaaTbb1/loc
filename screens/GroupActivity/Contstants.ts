@@ -14,6 +14,7 @@ export const GET_ACTIVITES = gql`
         description
         speaker
         start_datetime
+        end_datetime
         problems_count
         problems {
           id
@@ -25,6 +26,7 @@ export const GET_ACTIVITES = gql`
         resources {
           id
           name
+          link
         }
       }
     }
@@ -39,6 +41,7 @@ export interface IActivity {
   id: number;
   title: string;
   start_datetime: string;
+  end_datetime: string;
   description: string;
   speaker: string;
   problems_count: number;

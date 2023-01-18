@@ -22,7 +22,7 @@ import HashLoader from 'react-spinners/HashLoader';
 // utilites
 import { generateUEID } from 'utils/common';
 import EditorSubmissionBar from './PracticeMode/SubmissionBar/EditorSubmissionBar';
-import { ICQContent } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
+import { ICQContent, IFRContent } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 
 const EditorOptions = {
   selectOnLineNumbers: true,
@@ -43,11 +43,11 @@ const CodeEditor = ({
   refetch
 }: {
   refetch: any;
-  content: ICQContent;
+  content: ICQContent | IFRContent;
   activityId: number;
   problemId: number;
 }) => {
-  const [data, setData] = useState(`print('hello world')`);
+  const [data, setData] = useState(`console.log('hello world')`);
   const [language, setLanguage] = useState('javascript');
 
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
@@ -90,62 +90,58 @@ const CodeEditor = ({
   });
   return (
     <CodeEditorContainer>
-      <S.Flex alignItems="center" justifyContent="center">
-        <Menu src="/assets/images/icons/common/menu-close.svg" loading="lazy" />
-        <CodeEditorWrapper>
-          <ResultBar>
-            <ResultContainer>
-              <S.Flex direction="column" gap="4">
-                <SubmissionNumber>Submission 02</SubmissionNumber>
-                <SubmissionDate>{new Date(Date.now()).toDateString()}</SubmissionDate>
-              </S.Flex>
+      <Menu src="/assets/images/icons/common/menu-close.svg" loading="lazy" />
+      <CodeEditorWrapper>
+        <ResultBar>
+          <ResultContainer>
+            <S.Flex direction="column" gap="4">
+              <SubmissionNumber>Submission 02</SubmissionNumber>
+              <SubmissionDate>{new Date(Date.now()).toDateString()}</SubmissionDate>
+            </S.Flex>
+            <Result>Failed Test case #80</Result>
 
-              <Result>Failed Test case #80</Result>
+            <S.Flex alignItems="center">
+              <img
+                style={{ cursor: 'pointer' }}
+                onClick={downloadTxtFile}
+                src="/assets/images/icons/common/download.svg"
+                loading="lazy"
+              />
+              <Pipe />
+              <img style={{ cursor: 'pointer' }} src="/assets/images/icons/common/close.svg" loading="lazy" />
+            </S.Flex>
+          </ResultContainer>
+        </ResultBar>
 
-              <S.Flex alignItems="center">
-                <img
-                  style={{ cursor: 'pointer' }}
-                  onClick={downloadTxtFile}
-                  src="/assets/images/icons/common/download.svg"
-                  loading="lazy"
-                />
-                <Pipe />
-                <img style={{ cursor: 'pointer' }} src="/assets/images/icons/common/close.svg" loading="lazy" />
-              </S.Flex>
-            </ResultContainer>
-          </ResultBar>
+        <Editor
+          loading={<HashLoader color="#3848FF" />}
+          keepCurrentModel={true}
+          height="75vh"
+          width="100%"
+          options={{
+            selectOnLineNumbers: true,
+            minimap: {
+              enabled: false
+            },
+            renderWhitespace: 'none'
+          }}
+          theme="LOC"
+          value={data}
+          onChange={(e, _) => {
+            setData(String(e));
+          }}
+          language={language}
+        />
 
-          <Editor
-            loading={<HashLoader color="#3848FF" />}
-            keepCurrentModel={true}
-            height="75vh"
-            width="768px"
-            options={{
-              selectOnLineNumbers: true,
-              automaticLayout: true,
-              minimap: {
-                enabled: false
-              },
-              renderWhitespace: 'none'
-            }}
-            theme="LOC"
-            value={data}
-            onChange={(e, _) => {
-              setData(String(e));
-            }}
-            language={language}
-          />
-
-          <EditorSubmissionBar
-            setLanguage={setLanguage}
-            setData={setData}
-            activityId={activityId}
-            problemId={problemId}
-            answer={data}
-            refetch={refetch}
-          />
-        </CodeEditorWrapper>
-      </S.Flex>
+        <EditorSubmissionBar
+          setLanguage={setLanguage}
+          setData={setData}
+          activityId={activityId}
+          problemId={problemId}
+          answer={data}
+          refetch={refetch}
+        />
+      </CodeEditorWrapper>
     </CodeEditorContainer>
   );
 };

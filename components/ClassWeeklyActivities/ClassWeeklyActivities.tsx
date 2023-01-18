@@ -14,7 +14,8 @@ import {
 import Stepper from './Stepper';
 export interface IClassWeeklyActivitiesProps {
   current: number;
-  weeks: number;
+  weeks?: number;
+  setCurrent: (_id: number) => void,
   activites?: [
     {
       id: string;
@@ -24,23 +25,31 @@ export interface IClassWeeklyActivitiesProps {
     }
   ];
 }
-const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivitiesProps) => {
+const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent }: IClassWeeklyActivitiesProps) => {
   const [checked, setChecked] = useState('0');
+  const dateSplit = (endDates: string) => {
+    const enDate = new Date(endDates);
+    const curDate = new Date();
+
+    return Number(enDate.getTime()) < Number(curDate.getTime());
+  };
+
   return (
     <ClassWeeklyActivitiesContainer>
       <StepperContainer>
         <HeaderContainer>
           <HeaderTitle>Weekly Activities</HeaderTitle>
           <S.Flex alignItems="center">
-            <CurrentWeek>Week {current}</CurrentWeek>
+            <CurrentWeek>Week {current + 1}</CurrentWeek>
             <OverAllWeeks>of {weeks}</OverAllWeeks>
           </S.Flex>
         </HeaderContainer>
         <S.Flex>
-          {Array.from({ length: weeks }).map((__, index) => {
+          {Array.from({ length: weeks }).map((_, index) => {
             if (index == 0)
               return (
                 <Stepper
+                  setCurrent={() => setCurrent(index)}
                   key={index}
                   type="first"
                   fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
@@ -49,6 +58,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivi
             else if (index + 1 === weeks) {
               return (
                 <Stepper
+                  setCurrent={() => setCurrent(index)}
                   key={index}
                   type="last"
                   fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
@@ -57,6 +67,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivi
             } else {
               return (
                 <Stepper
+                  setCurrent={() => setCurrent(index)}
                   key={index}
                   type="middle"
                   fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
@@ -77,6 +88,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites }: IClassWeeklyActivi
                 title={activity.title}
                 date={activity.start_datetime && format(parseISO(activity.start_datetime), "EEEE LLL d @ H:m 'CET'")}
                 setCurrent={setChecked}
+                done={dateSplit(activity.end_datetime)}
               />
             );
           })

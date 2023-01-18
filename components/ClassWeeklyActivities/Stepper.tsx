@@ -3,13 +3,16 @@ import React from 'react';
 interface IStepperProps {
   type: 'first' | 'middle' | 'last';
   fillType?: 'done' | 'current' | 'default';
+  setCurrent: () => void
+
 }
 
-const Stepper = ({ type, fillType = 'default' }: IStepperProps) => {
+const Stepper = ({ type, fillType = 'default', setCurrent}: IStepperProps) => {
   return (
     <>
       <svg
-        style={{ cursor: 'pointer', minWidth: '24px' }}
+        onClick={setCurrent}
+        style={{ cursor: 'pointer', minWidth: '24px', maxHeight: '24px' }}
         viewBox="0 0 87 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

@@ -13,7 +13,7 @@ export const LiveClassWrapper = styled.div`
 `;
 
 export const LiveClassContainer = styled.div`
-  padding: 40px 0px;
+  padding: 40px 0px 0px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;

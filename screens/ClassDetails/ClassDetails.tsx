@@ -35,8 +35,6 @@ const ClassDetails = () => {
   });
 
   const [current, setCurrent] = useState(0);
-
-
   return (
     <>
       <Head>
@@ -77,17 +75,14 @@ const ClassDetails = () => {
               <div>No Data Provided</div>
             )}
             <ClassWeeklyActivities
-              activites={
-                data?.getCurrentModuleForCurrentStudent.lectures[
-                  currWeek(
-                    data?.getCurrentModuleForCurrentStudent.lectures.map(
-                      (lect) => lect.activities[lect.activities.length - 1].end_datetime
-                    ) || ['']
-                  ) - 1
-                ].activities
-              }
+              activites={data?.getCurrentModuleForCurrentStudent.lectures[current].activities}
               current={current}
               setCurrent={setCurrent}
+              currentWeek={currWeek(
+                data?.getCurrentModuleForCurrentStudent.lectures.map(
+                  (lect) => lect.activities[lect.activities.length - 1].end_datetime
+                ) || ['']
+              )}
               weeks={data?.getCurrentModuleForCurrentStudent?.lectures?.length || 1}
             />
           </ProgramContainer>

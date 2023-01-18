@@ -15,7 +15,8 @@ import Stepper from './Stepper';
 export interface IClassWeeklyActivitiesProps {
   current: number;
   weeks: number;
-  setCurrent: (_id: number) => void,
+  currentWeek: number;
+  setCurrent: (_id: number) => void;
   activites?: [
     {
       id: string;
@@ -25,7 +26,7 @@ export interface IClassWeeklyActivitiesProps {
     }
   ];
 }
-const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent }: IClassWeeklyActivitiesProps) => {
+const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent, currentWeek }: IClassWeeklyActivitiesProps) => {
   const [checked, setChecked] = useState('0');
   const dateSplit = (endDates: string) => {
     const enDate = new Date(endDates);
@@ -52,7 +53,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent }: IClass
                   setCurrent={() => setCurrent(index)}
                   key={index}
                   type="first"
-                  fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
+                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
                 />
               );
             else if (index + 1 === weeks) {
@@ -61,7 +62,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent }: IClass
                   setCurrent={() => setCurrent(index)}
                   key={index}
                   type="last"
-                  fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
+                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
                 />
               );
             } else {
@@ -70,7 +71,7 @@ const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent }: IClass
                   setCurrent={() => setCurrent(index)}
                   key={index}
                   type="middle"
-                  fillType={current >= index + 1 ? (current === index + 1 ? 'current' : 'done') : 'default'}
+                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
                 />
               );
             }

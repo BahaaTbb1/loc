@@ -22,20 +22,21 @@ import {
 import { IActivity } from '../Contstants';
 
 interface IPracticeExercisesProps {
-  Aid?: number;
+  Aid: number;
   data: IActivity | undefined;
+  week?: number;
 }
 
-const PracticeExercises = ({ Aid, data }: IPracticeExercisesProps) => {
+const PracticeExercises = ({ Aid, data, week }: IPracticeExercisesProps) => {
   const router = useRouter();
   const Navigate = () => {
-    return Aid ? router.push(`/group-challenge/${Aid}`) : router.push(`/group-challenge/1`);
+    return router.push(`/group-challenge/${Aid}`);
   };
   return (
     <>
       <Container>
         <ActivityDetails>
-          <span>Week 2</span>
+          <span>Week {week}</span>
           <div>{data?.title}</div>
         </ActivityDetails>
         <ActivitiesContainer>

@@ -18,12 +18,13 @@ import { format, parseISO } from 'date-fns';
 
 interface ILiveClassProps {
   data: IActivity | undefined;
+  week?: number;
 }
-const LiveClass: React.FC<ILiveClassProps> = ({ data }) => {
+const LiveClass: React.FC<ILiveClassProps> = ({ data, week }) => {
   return (
     <>
       <ActivityDetails>
-        <span>Week 2</span>
+        <span>Week {week}</span>
         <div>{data?.title}</div>
       </ActivityDetails>
       <LiveClassWrapper>

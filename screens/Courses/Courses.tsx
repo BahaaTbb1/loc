@@ -20,15 +20,7 @@ const Courses = () => {
       <Head>
         <title>Leagues of Code</title>
       </Head>
-      <Header
-        pageTitle="Courses"
-        tabs={[
-          {
-            current: true,
-            title: 'My Courses'
-          }
-        ]}
-      />
+      <Header pageTitle="Courses" />
       <SideBar />
       <CoursesContainer>
         <MainCol>

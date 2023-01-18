@@ -47,8 +47,8 @@ const CodeEditor = ({
   activityId: number;
   problemId: number;
 }) => {
-  const [data, setData] = useState(`console.log('hello world')`);
-  const [language, setLanguage] = useState('javascript');
+  const [data, setData] = useState(`print("hello world!")`);
+  const [language, setLanguage] = useState('python');
 
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const downloadTxtFile = () => {
@@ -127,9 +127,7 @@ const CodeEditor = ({
           }}
           theme="LOC"
           value={data}
-          onChange={(e, _) => {
-            setData(String(e));
-          }}
+          onChange={(e, _) => setData(String(e))}
           language={language}
         />
 

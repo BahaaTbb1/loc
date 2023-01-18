@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 interface IHeaderProps {
   fullWidth?: boolean;
   pageTitle: string;
-  tabs: {
+  tabs?: {
     current: boolean;
     title: string;
   }[];
@@ -47,21 +47,22 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
           <S.H2 style={{ color: '#232339', margin: 'auto' }}>{pageTitle}</S.H2>
         </Title>
         <Tabs>
-          {tabs.map(({ current, title }) => (
-            <S.Flex
-              style={{
-                width: '126px',
-                height: '32px'
-              }}
-              direction="column"
-              alignItems="center"
-              gap="2.5"
-              key={title}
-            >
-              <Option current={current}>{title}</Option>
-              {current && <Polygon />}
-            </S.Flex>
-          ))}
+          {tabs &&
+            tabs.map(({ current, title }) => (
+              <S.Flex
+                style={{
+                  width: '126px',
+                  height: '32px'
+                }}
+                direction="column"
+                alignItems="center"
+                gap="2.5"
+                key={title}
+              >
+                <Option current={current}>{title}</Option>
+                {current && <Polygon />}
+              </S.Flex>
+            ))}
         </Tabs>
         <Profile>
           <Link href="/profile">

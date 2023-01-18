@@ -3,11 +3,10 @@ import React from 'react';
 interface IStepperProps {
   type: 'first' | 'middle' | 'last';
   fillType?: 'done' | 'current' | 'default';
-  setCurrent: () => void
-
+  setCurrent: () => void;
 }
 
-const Stepper = ({ type, fillType = 'default', setCurrent}: IStepperProps) => {
+const Stepper = ({ type, fillType = 'default', setCurrent }: IStepperProps) => {
   return (
     <>
       <svg

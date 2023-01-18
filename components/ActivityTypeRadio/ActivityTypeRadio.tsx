@@ -9,12 +9,13 @@ export interface IActivityTypeRadioProps {
   type: number;
   classId: number;
   done: boolean;
-  setCurrent: (_id: number, type: number, classId: number) => void;
+  week: number;
+  setCurrent: (_id: number, type: number, classId: number, week: number) => void;
 }
 
-const ActivityTypeRadio = ({ id, checked, title, setCurrent, type, classId, done }: IActivityTypeRadioProps) => {
+const ActivityTypeRadio = ({ id, checked, title, setCurrent, type, classId, done, week }: IActivityTypeRadioProps) => {
   return (
-    <ActivityTypeRadioContainer onClick={() => setCurrent(id, type, classId)} checked={checked}>
+    <ActivityTypeRadioContainer onClick={() => setCurrent(id, type, classId, week)} checked={checked}>
       {done ? (
         <Image src="/assets/images/icons/common/filled-circle.svg" width={24} height={24} alt="checked" />
       ) : (

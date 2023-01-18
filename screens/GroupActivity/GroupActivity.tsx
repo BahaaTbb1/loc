@@ -30,6 +30,8 @@ const GroupActivity = () => {
   const [checked, setChecked] = useState<number | undefined>(
     data?.getLecturesInProgramForCurrentStudent[0].activities[0].id
   );
+  const [week, setWeek] = useState(1);
+
   const [type, setType] = useState(data?.getLecturesInProgramForCurrentStudent[0].activities[0].activity_type_id);
 
   const [activity, setActivity] = useState<IActivity | undefined>(
@@ -38,10 +40,10 @@ const GroupActivity = () => {
 
   // function to handle when a lecture or activity is clicked
   const handleCurrent = useCallback(
-    (id: number, type_id: number, classId: number) => {
+    (id: number, type_id: number, classId: number, _week: number) => {
       setChecked(id);
       setType(type_id);
-
+      setWeek(_week);
       const activities = data?.getLecturesInProgramForCurrentStudent.find((t) => t.id === classId)?.activities;
       const curA = activities?.find((t) => t.id === id);
       setActivity(curA);
@@ -88,9 +90,9 @@ const GroupActivity = () => {
         <Container>
           <LeftSide>
             {type === 2 || type === 7 ? (
-              <LiveClass data={activity} />
+              <LiveClass week={week} data={activity} />
             ) : (
-              <PracticeExercises data={activity} Aid={checked} />
+              <PracticeExercises week={week} data={activity} Aid={checked || 1} />
             )}
             <GroupActivityTabs resources={activity?.resources} description={activity?.description} />
           </LeftSide>
@@ -116,7 +118,7 @@ const GroupActivity = () => {
                   toggle={setOpen}
                   progress={progressCalc(activities.map((t) => t.end_datetime))}
                   open={open === id}
-                  week={id}
+                  week={index + 1}
                 >
                   <ActivityList>
                     {activities.map(({ id: activityId, title, activity_type_id, end_datetime }) => (
@@ -126,6 +128,7 @@ const GroupActivity = () => {
                         id={activityId}
                         title={title}
                         type={activity_type_id}
+                        week={index + 1}
                         setCurrent={handleCurrent}
                         checked={checked === activityId}
                         done={dateSplit(end_datetime)}

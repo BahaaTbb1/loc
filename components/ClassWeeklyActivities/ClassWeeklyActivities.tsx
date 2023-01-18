@@ -14,7 +14,7 @@ import {
 import Stepper from './Stepper';
 export interface IClassWeeklyActivitiesProps {
   current: number;
-  weeks?: number;
+  weeks: number;
   setCurrent: (_id: number) => void,
   activites?: [
     {

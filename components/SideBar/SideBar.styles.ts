@@ -27,8 +27,8 @@ export const ButtonsContainer = styled.div`
   justify-content: center;
   justify-items: center;
   align-items: center;
-  cursor: pointer;
-  padding: 13px 11px;
+  width: 64px;
+  height: 64px;
 `;
 
 export const Page = styled.div<IPage>`

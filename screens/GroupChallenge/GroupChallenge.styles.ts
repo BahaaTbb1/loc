@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
 export const GroupChallengeContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding-right: 16px;
+  display: grid;
+  position: absolute;
+  grid-auto-rows: minmax(0, 1fr);
+  grid-template-columns: repeat(4, 25%);
+  grid-template-rows: repeat(4, 25%);
+  height: calc(100% - 108px);
+  width: calc(100% - 104px);
 `;
 
 export const ProblemContentContainer = styled.div`
-  position: relative;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  height: inherit;
-  overflow: hidden;
+  grid-column: auto/span 2;
+  grid-row: auto/span 4;
 `;

@@ -2,13 +2,12 @@ import styled from 'styled-components';
 import defaultTheme from 'modules/ThemeModule/themes/default.json';
 
 export const CodeEditorWrapper = styled.div`
-  position: relative;
   flex: 1;
+  position: relative;
   .margin-view-overlays {
     background-color: #061b32 !important;
     margin: 0px !important;
     width: 40px !important;
-    height: 100%;
   }
   .line-numbers {
     left: 0px;
@@ -20,14 +19,16 @@ export const CodeEditorWrapper = styled.div`
   .editor-scrollable {
     top: 24px;
   }
-  height: calc(100vh - 65px);
+  .monaco-editor {
+    height: 100%;
+  }
 `;
 
 export const CodeEditorContainer = styled.div`
   border-radius: 12px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  padding-right: 16px;
 `;
 
 export const Menu = styled.img`

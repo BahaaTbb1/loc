@@ -15,7 +15,6 @@ const GroupActivityPage: NextPageWithLayout = () => {
 GroupActivityPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <>
-      <SideBar />
       <>{page}</>
     </>
   );

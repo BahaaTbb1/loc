@@ -3,20 +3,19 @@ import Button from 'components/Button';
 import { S } from 'globalstyles/index';
 import { useToast } from 'hooks/useToast';
 import { useSession } from 'next-auth/react';
-import React, { useEffect, useState } from 'react';
-import { IMCContent } from '../ProblemDetails/Submissions/Contstants';
-import Choice from './Choice';
-import { SUBMIT_MULTI_CHOICE_PROBLEM } from './Contstants';
+import React, { useState } from 'react';
+import { INQContent } from '../ProblemDetails/Submissions/Contstants';
+import { SUBMIT_NUMIERC_PROBLEM } from './Contstants';
 import {
   Container,
   ProblemContainer,
   ProblemText,
   ProblemTitle,
   ProblemSubTitle,
-  ChoicesContainer,
   Wrapper,
-  ButtonContainer
-} from './MultiChoices.Style';
+  ButtonContainer,
+  DataInput
+} from './Numeric.Style';
 
 const MultiChoices = ({
   content,
@@ -25,15 +24,16 @@ const MultiChoices = ({
   refetch
 }: {
   refetch: any;
-  content: IMCContent;
+  content: INQContent;
   activityId: number;
   problemId: number;
 }) => {
   const { data: session } = useSession();
   const toast = useToast();
-  const [choicesRes, setChoicesRes] = useState(content.answers.map((t) => ({ selected: false, title: t })));
-  const [submitMutate] = useMutation<{ submitAnswerToMCQForCurrentStudent: { id: number; verdict: { name: string } } }>(
-    SUBMIT_MULTI_CHOICE_PROBLEM,
+  const [value, setValue] = useState<number>();
+
+  const [submitMutate] = useMutation<{ submitAnswerToNQForCurrentStudent: { id: number; verdict: { name: string } } }>(
+    SUBMIT_NUMIERC_PROBLEM,
     {
       context: {
         headers: {
@@ -43,31 +43,32 @@ const MultiChoices = ({
       }
     }
   );
-  const [value] = useState(false);
   const onSubmit = async () => {
     try {
       const res = await submitMutate({
         variables: {
           activityId: activityId,
           problemId: problemId,
-          answer: choicesRes.map((t) => t.selected)
+          answer: value
         }
       });
+
       let status: 'correct' | 'wrong' | 'waiting' = 'waiting';
-      if (res.data?.submitAnswerToMCQForCurrentStudent.verdict.name == 'WRONG ANSWER') status = 'wrong';
-      else if (res.data?.submitAnswerToMCQForCurrentStudent.verdict.name == 'ACCEPTED') status = 'correct';
+      if (res.data?.submitAnswerToNQForCurrentStudent.verdict.name == 'WRONG ANSWER') status = 'wrong';
+      else if (res.data?.submitAnswerToNQForCurrentStudent.verdict.name == 'ACCEPTED') status = 'correct';
       else status = 'waiting';
       refetch();
       toast.open(
         <S.Flex justifyContent="space-between" alingItems="center" style={{ flex: '1', width: '300px' }}>
           <div>
-            <S.TextButtonMedium>{res.data?.submitAnswerToMCQForCurrentStudent.verdict.name}</S.TextButtonMedium>
+            <S.TextButtonMedium>{res.data?.submitAnswerToNQForCurrentStudent.verdict.name}</S.TextButtonMedium>
           </div>
           {/* <ToastMessage>Try Again!</ToastMessage> */}
         </S.Flex>,
         status,
         5000
       );
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.open(
         <S.Flex justifyContent="space-between" alingItems="center" style={{ flex: '1', width: '300px' }}>
@@ -81,20 +82,6 @@ const MultiChoices = ({
       );
     }
   };
-  const onClick = async (
-    id: number,
-    t: {
-      selected: boolean;
-      title: string;
-    }
-  ) => {
-    const temp = [...choicesRes];
-    temp[id] = { selected: !t.selected, title: t.title };
-    setChoicesRes(temp);
-  };
-  useEffect(() => {
-    setChoicesRes(content.answers.map((t) => ({ selected: false, title: t })));
-  }, [problemId]);
 
   return (
     <Wrapper>
@@ -102,18 +89,14 @@ const MultiChoices = ({
         <ProblemContainer>
           <ProblemText>
             <ProblemTitle>{content.question}</ProblemTitle>
-            <ProblemSubTitle>Select multiple options from the list.</ProblemSubTitle>
+            <ProblemSubTitle>{content.precision} digits of precision is required</ProblemSubTitle>
           </ProblemText>
-          <ChoicesContainer>
-            {choicesRes.map((t, id) => (
-              <Choice text={t.title} key={id} isSelected={t.selected} onClick={() => onClick(id, t)} />
-            ))}
-          </ChoicesContainer>
+          <DataInput value={value} onChange={(e) => setValue(Number(e.target.value))} type="number" />
         </ProblemContainer>
       </Container>
       <ButtonContainer>
         <div style={{ padding: '24px' }}>
-          <Button outline={value} component={value ? 'Test Code' : 'Submit attempt'} onClick={onSubmit} />
+          <Button outline={false} component={value ? 'Test Code' : 'Submit attempt'} onClick={onSubmit} />
         </div>
       </ButtonContainer>
     </Wrapper>

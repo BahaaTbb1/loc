@@ -29,11 +29,23 @@ export const GET_CLASS_DETAILS = gql`
       lectures {
         id
         name
+        status {
+          id
+          name
+        }
+        start_datetime
+        end_datetime
+        order_number
         activities {
           id
           title
           start_datetime
           end_datetime
+          status {
+            id
+            name
+          }
+          student_attendance
         }
       }
       students {
@@ -81,15 +93,27 @@ interface ITeacher {
   photo: string;
   calendly_link: string;
 }
-interface ILecture {
+export interface ILecture {
   id: string;
   name: string;
+  status: {
+    id: number;
+    name: 'FINISHED' | 'UPCOMING' | 'ONGOING';
+  };
+  start_datetime: string;
+  end_datetime: string;
+  order_number: number;
   activities: [
     {
       id: string;
       title: string;
       start_datetime: string;
       end_datetime: string;
+      status: {
+        id: number;
+        name: 'FINISHED' | 'UPCOMING' | 'ONGOING';
+      };
+      student_attendance: boolean;
     }
   ];
 }

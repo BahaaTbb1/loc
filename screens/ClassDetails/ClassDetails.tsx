@@ -14,26 +14,12 @@ import SideBar from 'components/SideBar';
 const ClassDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-
-  const currWeek = (endDates: string[]) => {
-    let weekIndex = endDates.length;
-    endDates.map((endDate, index) => {
-      const enDate = new Date(endDate);
-      const curDate = new Date();
-      if (Number(enDate.getTime()) > Number(curDate.getTime())) {
-        if (weekIndex == endDates.length) weekIndex = index + 1;
-      }
-    });
-
-    return weekIndex;
-  };
   const { data } = useQuery<IClassDetails>(GET_CLASS_DETAILS, {
     variables: {
       moduleId: 1,
       programId: id
     }
   });
-
   const [current, setCurrent] = useState(0);
   return (
     <>
@@ -49,7 +35,8 @@ const ClassDetails = () => {
           },
           {
             current: false,
-            title: 'Activities'
+            title: 'Activities',
+            link: `/group-activity/${id}`
           },
           {
             current: false,
@@ -75,14 +62,10 @@ const ClassDetails = () => {
               <div>No Data Provided</div>
             )}
             <ClassWeeklyActivities
-              activites={data?.getCurrentModuleForCurrentStudent.lectures[current].activities}
+              activites={data?.getCurrentModuleForCurrentStudent.lectures[current]?.activities || undefined}
               current={current}
               setCurrent={setCurrent}
-              currentWeek={currWeek(
-                data?.getCurrentModuleForCurrentStudent.lectures.map(
-                  (lect) => lect.activities[lect.activities.length - 1].end_datetime
-                ) || ['']
-              )}
+              lectures={data?.getCurrentModuleForCurrentStudent.lectures}
               weeks={data?.getCurrentModuleForCurrentStudent?.lectures?.length || 1}
             />
           </ProgramContainer>
@@ -91,6 +74,7 @@ const ClassDetails = () => {
               name={`${data?.getCurrentModuleForCurrentStudent.teacher?.user?.firstname} ${data?.getCurrentModuleForCurrentStudent.teacher?.user?.lastname}`}
               profession={data?.getCurrentModuleForCurrentStudent.teacher?.title}
               mail={data?.getCurrentModuleForCurrentStudent.teacher?.user?.email}
+              image={data?.getCurrentModuleForCurrentStudent.teacher.photo}
               link={data?.getCurrentModuleForCurrentStudent.teacher?.calendly_link}
             />
             <ParticipantsC participants={data?.getCurrentModuleForCurrentStudent.students} />

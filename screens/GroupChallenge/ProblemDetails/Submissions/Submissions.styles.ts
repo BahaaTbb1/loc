@@ -88,7 +88,7 @@ const IconRow = styled.td`
   color: #232339;
 `;
 const EmptySubmission = styled.div`
-  width: 496px;
+  width: 100%;
   height: 96px;
   background: #f2f7fc;
   border: 1px solid #dee7ee;

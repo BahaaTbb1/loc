@@ -91,7 +91,7 @@ const SelectBox = styled.div`
   border: 2px solid #595a6c;
   border-radius: 2px;
 `;
-const ChoiceContent = styled.div`
+const ChoiceContent = styled.input`
   display: flex;
   flex-direction: row;
   justify-items: flex-start;
@@ -108,6 +108,22 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
   border-end-end-radius: 12px;
   border-bottom-left-radius: 12px;
+`;
+
+export const DataInput = styled.input`
+  outline: none;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  width: 100%;
+  /* height: 72px; */
+  border: 1px solid #595a6c;
+  border-radius: 8px;
+  padding: 24px;
+  color: white;
+  font-size: 17px;
+  cursor: text;
+  background-color: #1c344d;
 `;
 export {
   ButtonContainer,

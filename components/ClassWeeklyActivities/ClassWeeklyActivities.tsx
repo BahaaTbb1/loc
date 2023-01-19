@@ -1,6 +1,7 @@
 import { parseISO, format } from 'date-fns';
 import { S } from 'globalstyles/index';
 import React, { useState } from 'react';
+import { ILecture } from 'screens/ClassDetails/Constants';
 import ActivityClass from './ActivtyClass';
 import {
   ActivitesContainer,
@@ -15,7 +16,6 @@ import Stepper from './Stepper';
 export interface IClassWeeklyActivitiesProps {
   current: number;
   weeks: number;
-  currentWeek: number;
   setCurrent: (_id: number) => void;
   activites?: [
     {
@@ -23,17 +23,17 @@ export interface IClassWeeklyActivitiesProps {
       title: string;
       start_datetime: string;
       end_datetime: string;
+      status: {
+        id: number;
+        name: 'FINISHED' | 'UPCOMING' | 'ONGOING';
+      };
+      student_attendance: boolean;
     }
   ];
+  lectures?: [ILecture];
 }
-const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent, currentWeek }: IClassWeeklyActivitiesProps) => {
-  const [checked, setChecked] = useState('0');
-  const dateSplit = (endDates: string) => {
-    const enDate = new Date(endDates);
-    const curDate = new Date();
-
-    return Number(enDate.getTime()) < Number(curDate.getTime());
-  };
+const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent, lectures }: IClassWeeklyActivitiesProps) => {
+  const [checked, setChecked] = useState(0);
 
   return (
     <ClassWeeklyActivitiesContainer>
@@ -46,36 +46,22 @@ const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent, currentW
           </S.Flex>
         </HeaderContainer>
         <S.Flex>
-          {Array.from({ length: weeks }).map((_, index) => {
-            if (index == 0)
-              return (
-                <Stepper
-                  setCurrent={() => setCurrent(index)}
-                  key={index}
-                  type="first"
-                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
-                />
-              );
-            else if (index + 1 === weeks) {
-              return (
-                <Stepper
-                  setCurrent={() => setCurrent(index)}
-                  key={index}
-                  type="last"
-                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
-                />
-              );
-            } else {
-              return (
-                <Stepper
-                  setCurrent={() => setCurrent(index)}
-                  key={index}
-                  type="middle"
-                  fillType={currentWeek >= index + 1 ? (currentWeek === index + 1 ? 'current' : 'done') : 'default'}
-                />
-              );
-            }
-          })}
+          {lectures &&
+            lectures?.map((_, index) => {
+              if (index == 0)
+                return (
+                  <Stepper setCurrent={() => setCurrent(index)} key={index} type="first" fillType={_.status.name} />
+                );
+              else if (index + 1 === weeks) {
+                return (
+                  <Stepper setCurrent={() => setCurrent(index)} key={index} type="last" fillType={_.status.name} />
+                );
+              } else {
+                return (
+                  <Stepper setCurrent={() => setCurrent(index)} key={index} type="middle" fillType={_.status.name} />
+                );
+              }
+            })}
         </S.Flex>
       </StepperContainer>
       <ActivitesContainer>
@@ -83,13 +69,13 @@ const ClassWeeklyActivities = ({ current, weeks, activites, setCurrent, currentW
           activites.map((activity) => {
             return (
               <ActivityClass
-                key={activity.id}
-                id={activity.id}
-                checked={checked === activity.id}
+                key={Number(activity.id)}
+                id={Number(activity.id)}
+                checked={checked === Number(activity.id)}
                 title={activity.title}
                 date={activity.start_datetime && format(parseISO(activity.start_datetime), "EEEE LLL d @ H:m 'CET'")}
                 setCurrent={setChecked}
-                done={dateSplit(activity.end_datetime)}
+                done={activity.student_attendance}
               />
             );
           })

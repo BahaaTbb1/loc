@@ -63,11 +63,10 @@ const Submissions = ({ submissionData }: { submissionData: IMCProblemSubmissions
       );
     });
   };
-
   return (
     <SubmissionContainer>
       <SubmissionTitle>Submissions</SubmissionTitle>
-      {rows() ? (
+      {submissionData && rows() && submissionData?.getSubmissionsFromProblemForCurrentStudent.length > 0 ? (
         <SubmissionTable>
           <Table rows={rows()} />
         </SubmissionTable>

@@ -6,7 +6,13 @@ export const GET_ACTIVITES = gql`
       id
       name
       description
-
+      status {
+        id
+        name
+      }
+      start_datetime
+      end_datetime
+      order_number
       activities {
         activity_type_id
         id
@@ -15,6 +21,11 @@ export const GET_ACTIVITES = gql`
         speaker
         start_datetime
         end_datetime
+        status {
+          id
+          name
+        }
+        student_attendance
         problems_count
         problems {
           id
@@ -46,12 +57,24 @@ export interface IActivity {
   speaker: string;
   problems_count: number;
   problems: [IProblem];
+  status: {
+    id: number;
+    name: 'FINISHED' | 'UPCOMING' | 'ONGOING';
+  };
+  student_attendance: boolean;
   resources: [{ id: number; name: string; link: string }];
 }
 export interface ActivitesData {
   id: number;
   name: string;
   description: string;
+  status: {
+    id: number;
+    name: 'FINISHED' | 'UPCOMING' | 'ONGOING';
+  };
+  start_datetime: string;
+  end_datetime: string;
+  order_number: number;
   activities: [IActivity];
 }
 export interface IProblem {

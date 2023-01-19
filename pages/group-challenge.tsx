@@ -1,12 +1,11 @@
 import Head from 'next/head';
-import { GroupChallengeBar, ProblemsBar } from 'components';
 import GroupChallenge from 'screens/GroupChallenge';
 import type { NextPageWithLayout } from './_app';
 import { ReactElement } from 'react';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
 import { addApolloState, initializeApollo } from 'lib/apolloClient';
-import { HttpLink, useQuery } from '@apollo/client';
+import { HttpLink } from '@apollo/client';
 import { GET_STUDENT_ACTIVITY } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 
 const GroupChallengePage: NextPageWithLayout = () => {

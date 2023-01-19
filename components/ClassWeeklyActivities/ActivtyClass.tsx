@@ -12,11 +12,11 @@ import Link from 'utils/ActiveLink';
 import { useRouter } from 'next/router';
 
 export interface IActivityTypeRadioProps {
-  id: string;
+  id: number;
   checked: boolean;
   title: string;
   date: string;
-  setCurrent: (_id: string) => void;
+  setCurrent: (_id: number) => void;
   done: boolean;
 }
 

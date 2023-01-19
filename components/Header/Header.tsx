@@ -21,6 +21,7 @@ interface IHeaderProps {
   tabs?: {
     current: boolean;
     title: string;
+    link?: string;
   }[];
   back?: boolean;
 }
@@ -28,7 +29,9 @@ interface IHeaderProps {
 const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
   const router = useRouter();
   const handleClick = () => back && router.back();
-
+  const Navigate = (link?: string) => {
+    link && router.push(`${link}`);
+  };
   return (
     <Wrapper fullWidth={fullWidth}>
       <Container>
@@ -44,15 +47,17 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
               />
             </BackButtonContainer>
           )}
-          <S.H2 style={{ color: '#232339', margin: 'auto' }}>{pageTitle}</S.H2>
+          <S.H2 style={{ color: '#232339' }}>{pageTitle}</S.H2>
         </Title>
         <Tabs>
           {tabs &&
-            tabs.map(({ current, title }) => (
+            tabs.map(({ current, title, link }) => (
               <S.Flex
+                onClick={() => Navigate(link)}
                 style={{
                   width: '126px',
-                  height: '32px'
+                  height: '32px',
+                  cursor: 'pointer'
                 }}
                 direction="column"
                 alignItems="center"

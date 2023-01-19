@@ -58,9 +58,12 @@ export interface IProblem {
   id: number;
   title: string;
   description: string;
-  content: ICQContent | IMCContent | IFRContent;
+  content: ICQContent | IMCContent | IFRContent | INQContent;
 }
-
+export interface INQContent {
+  question: string;
+  precision: number;
+}
 export interface IFRContent {
   question: string;
 }

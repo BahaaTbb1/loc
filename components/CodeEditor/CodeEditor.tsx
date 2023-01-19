@@ -90,7 +90,6 @@ const CodeEditor = ({
   });
   return (
     <CodeEditorContainer>
-      <Menu src="/assets/images/icons/common/menu-close.svg" loading="lazy" />
       <CodeEditorWrapper>
         <ResultBar>
           <ResultContainer>
@@ -102,7 +101,7 @@ const CodeEditor = ({
 
             <S.Flex alignItems="center">
               <img
-                style={{ cursor: 'pointer' }}
+                style={{ cursor: 'pointer', maxHeight: '40px', maxWidth: '128' }}
                 onClick={downloadTxtFile}
                 src="/assets/images/icons/common/download.svg"
                 loading="lazy"
@@ -116,7 +115,8 @@ const CodeEditor = ({
         <Editor
           loading={<HashLoader color="#3848FF" />}
           keepCurrentModel={true}
-          height="75vh"
+          height="70vh"
+          saveViewState
           width="100%"
           options={{
             selectOnLineNumbers: true,

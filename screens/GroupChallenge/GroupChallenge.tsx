@@ -6,11 +6,14 @@ import MultiChoices from './MultiChoices';
 import { useQuery } from '@apollo/client';
 import {
   GIT_PROBLEMS_SUBMISSIONS,
+  IFRProblemSubmissions,
+  IMCContent,
   IMCProblemSubmissions,
   IProblem,
   IStudentActivity
 } from './ProblemDetails/Submissions/Contstants';
 import { useSession } from 'next-auth/react';
+import Numeric from './Numeric';
 
 const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
   const [curProblemColore, setCurProblemColore] = useState(0);
@@ -72,6 +75,17 @@ const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
         <ProblemContentContainer>
           {(problemData?.type_id == 5 || problemData?.type_id == 3) && (
             <CodeEditor
+              refetch={refetch}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
+              content={problemData.content}
+              activityId={Number(data?.getActivityForCurrentStudent.id)}
+              problemId={Number(problemData?.id)}
+            />
+          )}
+
+          {problemData?.type_id == 4 && (
+            <Numeric
               refetch={refetch}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore

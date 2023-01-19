@@ -11,7 +11,7 @@ import {
   RightSide
 } from './GroupActivity.styles';
 
-import { Activity, ActivityTypeRadio, Header, LiveClass } from 'components';
+import { Activity, ActivityTypeRadio, Header, LiveClass, SideBar } from 'components';
 import GroupActivityTabs from './GroupActivityTabs';
 import Image from 'next/image';
 import { useQuery } from '@apollo/client';
@@ -50,17 +50,12 @@ const GroupActivity = () => {
     },
     [data]
   );
-  const dateSplit = (endDates: string) => {
-    const enDate = new Date(endDates);
-    const curDate = new Date();
 
-    return Number(enDate.getTime()) < Number(curDate.getTime());
-  };
   const progressCalc = (endDates: string[]) => {
-    const total = endDates.length;
+    const total = endDates.length || 1;
     let count = 0;
     endDates.map((e) => {
-      if (dateSplit(e)) count += 1;
+      if (e === 'FINISHED') count += 1;
     });
     return Number(((count * 100) / total).toFixed(0));
   };
@@ -70,11 +65,12 @@ const GroupActivity = () => {
         <title>Leagues of Code</title>
       </Head>
       <Header
-        pageTitle="League 5: Module 7"
+        pageTitle="Hello World"
         tabs={[
           {
             current: false,
-            title: 'Overview'
+            title: 'Overview',
+            link: `/class-details/${queryId}`
           },
           {
             current: true,
@@ -86,6 +82,8 @@ const GroupActivity = () => {
           }
         ]}
       />
+      <SideBar />
+
       <ContentContainer>
         <Container>
           <LeftSide>
@@ -116,12 +114,12 @@ const GroupActivity = () => {
                   id={id}
                   title={name}
                   toggle={setOpen}
-                  progress={progressCalc(activities.map((t) => t.end_datetime))}
+                  progress={progressCalc(activities.map((t) => t.status.name))}
                   open={open === id}
                   week={index + 1}
                 >
                   <ActivityList>
-                    {activities.map(({ id: activityId, title, activity_type_id, end_datetime }) => (
+                    {activities.map(({ id: activityId, title, activity_type_id, student_attendance }) => (
                       <ActivityTypeRadio
                         key={activityId}
                         classId={id}
@@ -131,7 +129,7 @@ const GroupActivity = () => {
                         week={index + 1}
                         setCurrent={handleCurrent}
                         checked={checked === activityId}
-                        done={dateSplit(end_datetime)}
+                        done={student_attendance}
                       />
                     ))}
                   </ActivityList>

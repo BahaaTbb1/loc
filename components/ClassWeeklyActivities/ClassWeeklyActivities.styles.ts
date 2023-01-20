@@ -60,7 +60,10 @@ export const OverAllWeeks = styled.div`
 `;
 
 export const ActivitesContainer = styled.div`
-  padding: 32px;
+  @media (min-width: 768px) {
+      padding: 32px;
+  }
+
 `;
 
 export const ActivityTypeRadioContainer = styled.div<{ checked: boolean }>`

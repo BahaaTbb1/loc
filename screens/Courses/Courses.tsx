@@ -31,7 +31,7 @@ const Courses = () => {
                 data?.getOngoingProgramsForCurrentStudent.map((course) => {
                   return (
                     <CourseCard
-                      number={2}
+                      number={data.getOngoingProgramsForCurrentStudent.length}
                       type="active"
                       id={course.id}
                       key={course.id}

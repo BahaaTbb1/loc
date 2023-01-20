@@ -2,7 +2,6 @@ import { S } from 'globalstyles/index';
 import React from 'react';
 import { ResourceContainer, ResourceIcon, ResourceTitle } from './Resource.styles';
 import Image from 'next/image';
-import Link from 'next/link';
 export interface IResourceProps {
   title: string;
   type: 'folder' | 'file' | 'video' | 'link';
@@ -11,7 +10,7 @@ export interface IResourceProps {
 
 const Resource = ({ title, type, link }: IResourceProps) => {
   return (
-    <Link href={link ? link : ''}>
+    <a href={link ? link : ''} target="_blank" rel="noreferrer">
       <ResourceContainer>
         <S.Flex direction="column" gap="12">
           <ResourceIcon>
@@ -20,7 +19,7 @@ const Resource = ({ title, type, link }: IResourceProps) => {
           <ResourceTitle>{title}</ResourceTitle>
         </S.Flex>
       </ResourceContainer>
-    </Link>
+    </a>
   );
 };
 export default Resource;

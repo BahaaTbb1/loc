@@ -98,6 +98,5 @@ export const Tabs = styled.div`
   display: flex;
   @media (max-width: 768px) {
     justify-content: center;
-    padding: 16px 102.5px;
   }
 `;

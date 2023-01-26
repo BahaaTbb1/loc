@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 const InputOutputContainer = styled.div`
+  margin-top: 12px;
   display: flex;
   flex-direction: row;
   gap: 8px;

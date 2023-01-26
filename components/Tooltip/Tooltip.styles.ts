@@ -20,6 +20,7 @@ ToolTipStyles.Box = styled.div`
   font-size: 14px;
   line-height: 17px;
   padding: 12px;
+  z-index: 10;
 `;
 ToolTipStyles.Arrow = styled.span`
   position: absolute;

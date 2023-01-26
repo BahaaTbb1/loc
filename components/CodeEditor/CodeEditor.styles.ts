@@ -4,6 +4,9 @@ import defaultTheme from 'modules/ThemeModule/themes/default.json';
 export const CodeEditorWrapper = styled.div`
   flex: 1;
   position: relative;
+  border-radius: 12px !important;
+  overflow: hidden;
+
   .margin-view-overlays {
     background-color: #061b32 !important;
     margin: 0px !important;

@@ -27,7 +27,7 @@ export const Section = styled.div`
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  gap: 24px;
+  gap: 32px;
   margin-bottom: 32px;
   width: 100%;
 
@@ -41,7 +41,13 @@ export const Section = styled.div`
 `;
 
 export const SectionTitle = styled.div`
+  font-family: 'Inter';
   font-weight: 600;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 36px;
   @media (min-width: 769px) {
     font-size: 2em;
   }

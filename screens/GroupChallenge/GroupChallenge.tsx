@@ -35,6 +35,11 @@ const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
 
   useEffect(() => {
     setProblemData(data?.getActivityForCurrentStudent.problems.filter((t) => t.id == problemId)[0]);
+
+    // eslint-disable-next-line no-console
+    console.log(problemData?.type_id);
+    // eslint-disable-next-line no-console
+    console.log(problemData?.type_id);
     // eslint-disable-next-line no-console
   }, [data?.getActivityForCurrentStudent.problems, problemId]);
   const problemsIds = data?.getActivityForCurrentStudent.problems.map((t) => t.id);
@@ -75,6 +80,7 @@ const GroupChallenge = ({ data }: { data: IStudentActivity | undefined }) => {
         <ProblemContentContainer>
           {(problemData?.type_id == 5 || problemData?.type_id == 3) && (
             <CodeEditor
+              type={problemData?.type_id}
               refetch={refetch}
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore

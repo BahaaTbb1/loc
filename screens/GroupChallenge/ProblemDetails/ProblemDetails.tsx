@@ -20,7 +20,7 @@ const ProblemDetails = ({ submissionData, content, problemType, description }: I
       {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        problemType == 5 && <InputOutput testCases={content.test_cases} />
+        problemType == 5 && <InputOutput testCases={content.sample_tests} />
       }
     </ProblemDetailsContainer>
   );

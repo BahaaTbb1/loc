@@ -65,6 +65,7 @@ const GroupActivity = () => {
         <title>Leagues of Code</title>
       </Head>
       <Header
+        back={true}
         pageTitle="Hello World"
         tabs={[
           {

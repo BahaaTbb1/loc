@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import { S } from 'globalstyles';
 import Link from 'utils/ActiveLink';
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Wrapper,
@@ -10,11 +12,14 @@ import {
   BackButtonContainer,
   Profile,
   Title,
-  Tabs
+  Tabs,
+  ProfileImg
 } from './Header.styles';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Dropdown from 'components/Dropdown';
+import DropDownList from './DropDownList';
 interface IHeaderProps {
   fullWidth?: boolean;
   pageTitle: string;
@@ -27,8 +32,11 @@ interface IHeaderProps {
 }
 
 const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
-  const handleClick = () => back && router.back();
+  const handleClick = () => {
+    back && router.back();
+  };
   const Navigate = (link?: string) => {
     link && router.push(`${link}`);
   };
@@ -70,12 +78,22 @@ const Header = ({ fullWidth, tabs, pageTitle, back }: IHeaderProps) => {
             ))}
         </Tabs>
         <Profile>
-          <Link href="/profile">
-            <img style={{ cursor: 'pointer' }} src="/assets/images/user/default-header.png" loading="lazy" />
-          </Link>
-          <IconContainer onClick={() => signOut()}>
-            <img src="/assets/images/icons/common/back.svg" loading="lazy" />
-          </IconContainer>
+          <Dropdown
+            top={88}
+            width={159}
+            right={10}
+            isOpen={isOpen}
+            component={
+              <>
+                <Link href="/profile">
+                  <DropDownList text={'profile'} />
+                </Link>
+                <DropDownList text={'Signout'} onClick={() => signOut()} />
+              </>
+            }
+            onClickOutside={() => setIsOpen(false)}
+          />
+          <ProfileImg onClick={() => setIsOpen(true)} src="/assets/images/user/default-header.png" loading="lazy" />
         </Profile>
       </Container>
     </Wrapper>

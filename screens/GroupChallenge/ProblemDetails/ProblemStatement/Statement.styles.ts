@@ -12,7 +12,7 @@ export const StatementTitle = styled.div`
   font-size: 20px;
   line-height: 100%;
   color: #232339;
-  margin-bottom: 12px;
+  margin-bottom: 12px !important;
 `;
 
 export const StatementDescription = styled.div`

@@ -24,24 +24,14 @@ import { generateUEID } from 'utils/common';
 import EditorSubmissionBar from './PracticeMode/SubmissionBar/EditorSubmissionBar';
 import { ICQContent, IFRContent } from 'screens/GroupChallenge/ProblemDetails/Submissions/Contstants';
 
-const EditorOptions = {
-  selectOnLineNumbers: true,
-  automaticLayout: true,
-  minimap: {
-    enabled: false
-  },
-  renderControls: false,
-  renderLineHighlight: false,
-  renderLineNumbers: false,
-  renderWhitespace: 'none'
-};
-
 const CodeEditor = ({
+  type,
   content,
   activityId,
   problemId,
   refetch
 }: {
+  type: number;
   refetch: any;
   content: ICQContent | IFRContent;
   activityId: number;
@@ -127,11 +117,11 @@ const CodeEditor = ({
           }}
           theme="LOC"
           value={data}
-          onChange={(e, _) => setData(String(e))}
           language={language}
         />
 
         <EditorSubmissionBar
+          type={type}
           setLanguage={setLanguage}
           setData={setData}
           activityId={activityId}

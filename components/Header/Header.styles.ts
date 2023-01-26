@@ -19,7 +19,7 @@ export const Wrapper = styled.div<{ fullWidth?: boolean }>`
 `;
 export const Container = styled.div`
   @media (min-width: 768px) {
-    padding: 32px 64px;
+    padding: 32px 64px 24px 64px;
 
     display: flex;
     justify-content: space-between;
@@ -27,6 +27,12 @@ export const Container = styled.div`
   }
   @media (max-width: 769px) {
   }
+`;
+export const ProfileImg = styled.img`
+  cursor: 'pointer';
+  border-radius: '50%';
+  width: 48px;
+  height: 48px;
 `;
 
 export const IconContainer = styled.div`
@@ -98,5 +104,27 @@ export const Tabs = styled.div`
   display: flex;
   @media (max-width: 768px) {
     justify-content: center;
+  }
+`;
+export const DropdownText = styled.div<{ drageed: boolean }>`
+  display: flex;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 64px;
+  overflow: hidden;
+  padding: 0px 24px;
+  border-radius: 8px;
+  p {
+    font-family: 'InterRegular';
+    font-weight: 600;
+    line-height: 36px;
+    color: var(--extracted-r6o4lv);
+  }
+
+  &:hover {
+    background-color: rgb(242, 247, 252);
+    p {
+      color: rgb(0 0 255);
+    }
   }
 `;

@@ -1,5 +1,7 @@
 import { useMutation } from '@apollo/client';
 import Button from 'components/Button';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import { S } from 'globalstyles/index';
 import { useToast } from 'hooks/useToast';
 import { useSession } from 'next-auth/react';
@@ -17,6 +19,12 @@ import {
   DataInput
 } from './Numeric.Style';
 
+yup.setLocale({
+  mixed: {
+    required: 'Required Field'
+  }
+});
+
 const MultiChoices = ({
   content,
   activityId,
@@ -30,7 +38,6 @@ const MultiChoices = ({
 }) => {
   const { data: session } = useSession();
   const toast = useToast();
-  const [value, setValue] = useState<number>();
 
   const [submitMutate] = useMutation<{ submitAnswerToNQForCurrentStudent: { id: number; verdict: { name: string } } }>(
     SUBMIT_NUMIERC_PROBLEM,
@@ -43,7 +50,7 @@ const MultiChoices = ({
       }
     }
   );
-  const onSubmit = async () => {
+  const onSubmit = async (value: number) => {
     try {
       const res = await submitMutate({
         variables: {
@@ -82,6 +89,19 @@ const MultiChoices = ({
       );
     }
   };
+  const formik = useFormik({
+    initialValues: {
+      value: ''
+    },
+    onSubmit: async (values) => {
+      // eslint-disable-next-line no-console
+      onSubmit(Number(values.value));
+      onSubmit;
+    },
+    validationSchema: yup.object({
+      value: yup.number().typeError('Input must be a valid number').required('Input is required')
+    })
+  });
 
   return (
     <Wrapper>
@@ -91,12 +111,13 @@ const MultiChoices = ({
             <ProblemTitle>{content.question}</ProblemTitle>
             <ProblemSubTitle>{content.precision} digits of precision is required</ProblemSubTitle>
           </ProblemText>
-          <DataInput value={value} onChange={(e) => setValue(Number(e.target.value))} type="number" />
+          {formik.errors.value && <div style={{ color: 'red' }}>{formik.errors.value}</div>}
+          <DataInput value={formik.values.value} onChange={(e) => formik.setFieldValue('value', e.target.value)} />
         </ProblemContainer>
       </Container>
       <ButtonContainer>
         <div style={{ padding: '24px' }}>
-          <Button outline={false} component={value ? 'Test Code' : 'Submit attempt'} onClick={onSubmit} />
+          <Button outline={false} component={'Submit attempt'} onClick={() => formik.handleSubmit()} />
         </div>
       </ButtonContainer>
     </Wrapper>

@@ -21,7 +21,7 @@ export const Container = styled.div`
   width: 100%;
   justify-content: center;
   gap: 32px;
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     flex-direction: column;
   }
 `;

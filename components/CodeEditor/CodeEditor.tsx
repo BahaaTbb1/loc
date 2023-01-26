@@ -37,13 +37,13 @@ const CodeEditor = ({
   activityId: number;
   problemId: number;
 }) => {
-  const [data, setData] = useState(`print("hello world!")`);
+  const [data, setData] = useState<string|undefined>(`print("hello world!")`);
   const [language, setLanguage] = useState('python');
 
   // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   const downloadTxtFile = () => {
     const element = document.createElement('a');
-    const file = new Blob([data], { type: 'text/plain;charset=utf-8' });
+    const file = new Blob([data || ""], { type: 'text/plain;charset=utf-8' });
     element.href = URL.createObjectURL(file);
     element.download = `${generateUEID()}.${languages[language.toLowerCase()]}`;
     document.body.appendChild(element);
@@ -117,6 +117,7 @@ const CodeEditor = ({
           }}
           theme="LOC"
           value={data}
+          onChange={(e) => setData(e)}
           language={language}
         />
 

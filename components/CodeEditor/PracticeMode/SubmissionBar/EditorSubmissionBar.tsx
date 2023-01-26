@@ -19,7 +19,7 @@ interface ISubmissionBar {
   activityId: number;
   problemId: number;
   refetch: any;
-  answer: string;
+  answer?: string;
 }
 
 const EditorSubmissionBar = memo(

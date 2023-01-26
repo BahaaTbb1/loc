@@ -27,3 +27,4 @@ const ProblemDetails = ({ submissionData, content, problemType, description }: I
 };
 
 export default ProblemDetails;
+``
